@@ -21,6 +21,7 @@
     ],
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}]
+      "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow", "endOfLine": "auto"}],
+      "linebreak-style": ["error", "windows"]
     }
 }
