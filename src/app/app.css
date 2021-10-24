@@ -1,0 +1,23 @@
+.app {
+  font-family: "inter", 'Arial', 'Helvetica', sans-serif;
+}
+
+.page {
+  max-width: 1280px;
+  min-width: 320px;
+}
+
+.page__link {
+  font-family: "inter", 'Arial', 'Helvetica', sans-serif;
+  font-weight: 400;
+  transition: linear opacity 0.5s;
+}
+
+.page__link:hover {
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.page__link_active {
+  font-weight: 400;
+}

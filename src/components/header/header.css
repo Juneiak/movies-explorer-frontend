@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+.header__logo-link {
+  
+}
+
+.header__auth {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__link {
+  margin-right: 30px;
+}
