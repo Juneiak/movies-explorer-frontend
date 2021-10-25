@@ -12,6 +12,10 @@
   padding: 0;
 }
 
+.account:hover {
+  cursor:pointer;
+}
+
 .account__button-text {
   font-weight: 500;
   font-size: 13px;

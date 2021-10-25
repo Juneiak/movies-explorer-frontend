@@ -8,12 +8,13 @@
   background: #000000;
   border-radius: 3px;
   color: #FFFFFF;
-  transition: linear opacity 0.5s;
+  transition: linear opacity 0.3s;
   opacity: 1;
 }
 
 .button:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .button_type_basic-small {
@@ -28,7 +29,6 @@
   font-size: 14px;
   line-height: 17px;
 }
-
 .button_type_secondary {
   background: #F9F9F9;
   color: #000000;
@@ -40,7 +40,7 @@
 }
 
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 425px) {
   .button_type_basic-small {
     padding: 5px 12px;
     font-size: 10px;

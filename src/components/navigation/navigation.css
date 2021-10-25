@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__links-list {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.navigation__link {
+  color: #000000;
+  font-size: 13px;
+  line-height: 18px;
+  margin-right: 16px;
+}
+
+.navigation__link:last-child {
+  margin-right: 0;
+}
