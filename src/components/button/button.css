@@ -10,6 +10,7 @@
   color: #FFFFFF;
   transition: linear opacity 0.3s;
   opacity: 1;
+  border: none;
 }
 
 .button:hover {
@@ -40,7 +41,7 @@
 }
 
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .button_type_basic-small {
     padding: 5px 12px;
     font-size: 10px;

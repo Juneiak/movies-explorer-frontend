@@ -1,54 +1,51 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import {
-  Main,
-  Movies,
-  Login,
-  Register,
-  SavedMovies,
-  Profile,
+  MainPage,
+  MoviesPage,
+  LoginPage,
+  RegisterPage,
+  SavedMoviesPage,
+  ProfilePage,
+  NotFoundPage,
 } from '../pages';
-import { Header, Footer } from '../components';
 import './app.css';
 
 function App() {
   return (
-  <div className="app">
-    <div className="page">
+    <div className="app">
       <Switch>
 
-        <Header />
-
         <Route path='/'>
-          <Main />
+          <MainPage />
         </Route>
 
         <Route path='/movies'>
-          <Movies />
+          <MoviesPage />
         </Route>
-
+        
         <Route path='/saved-movies'>
-          <SavedMovies />
+          <SavedMoviesPage />
         </Route>
-
-        <Footer />
-
 
         <Route path='/profile'>
-          <Profile />
+          <ProfilePage />
         </Route>
 
         <Route path='/signin'>
-          <Login />
+          <LoginPage />
         </Route>
 
         <Route path='/signup'>
-          <Register />
+          <RegisterPage />
+        </Route>
+
+        <Route path='*'>
+          <NotFoundPage />
         </Route>
 
       </Switch>
     </div>
-  </div>
   )
 }
 export default App;

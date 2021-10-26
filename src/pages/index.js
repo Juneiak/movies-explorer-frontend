@@ -1,17 +1,17 @@
-import Login from './login/login-page';
-import Main from './main/main-page'
-import Movies from './movies/movies-page';
-import SavedMovies from './saved-movies/saved-movies-page';
-import Register from './register/register-page';
-import Profile from './profile/profile-page';
-import NotFound from './not-found/not-found-page';
+import LoginPage from './login/login-page';
+import MainPage from './main/main-page'
+import MoviesPage from './movies/movies-page';
+import SavedMoviesPage from './saved-movies/saved-movies-page';
+import RegisterPage from './register/register-page';
+import ProfilePage from './profile/profile-page';
+import NotFoundPage from './not-found/not-found-page';
 
 export {
-  SavedMovies,
-  Login,
-  Main,
-  Movies,
-  Register,
-  Profile,
-  NotFound,
+  SavedMoviesPage,
+  LoginPage,
+  MainPage,
+  MoviesPage,
+  RegisterPage,
+  ProfilePage,
+  NotFoundPage,
 };

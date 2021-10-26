@@ -1,9 +1,22 @@
 .header {
+  width: 100%;
+  padding: 21px 0 21px;
+  display:flex;
+  justify-content: center;
+}
+
+.header_position_main {
+  background-color: #F3C1F8;
+}
+
+.header__content {
+  max-width: 1280px;
+  /* min-width: 320px; */
   display: flex;
   justify-content: center;
+  align-items: center;
   justify-content: space-between;
   width: 89%;
-  padding: 21px 0 21px;
 }
 
 .header__logo-link {
@@ -46,15 +59,17 @@
   padding: 0;
 }
 
-@media screen and (max-width: 780) {
+@media screen and (max-width: 780px) {
   .header {
-    width: 92%;
     padding: 18px 0 18px;
+  }
+  .header__content {
+    width: 92%;
   }
 }
 
-@media screen and (max-width: 425px) {
-  .header {
+@media screen and (max-width: 430px) {
+  .header__content   {
     width: 91%;
   }
 

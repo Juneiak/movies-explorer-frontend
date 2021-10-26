@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SavedMovies = () => {
+const SavedMoviesPage = () => {
   return (
     <div></div>
   )
 };
 
-export default SavedMovies;
+export default SavedMoviesPage;
