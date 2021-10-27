@@ -16,7 +16,7 @@ const MainPage = () => {
   return (
     <>
       <Header />
-      <main className='main'>
+      <main className='main-page'>
         <Promo />
         <NavTab />
         <AboutProject />

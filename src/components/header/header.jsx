@@ -8,7 +8,6 @@ const Header = () => {
   const isLogin = true;
   const { width } = useWindowDimensions();
   const {isExact: mainPageMatch} = useRouteMatch('/');
-  console.log(mainPageMatch);
 
   const burgerClickHandler = () => {
 
