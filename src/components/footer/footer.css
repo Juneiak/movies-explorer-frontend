@@ -1,0 +1,97 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 79px 0 20px;
+}
+
+.footer__content {
+  max-width: 1140px;
+  width: 89%;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.footer__author {
+  color: #A0A0A0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0 0 20px;
+  margin: 0 0 20px;
+  width: 100%;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.footer__misc {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.footer__year {
+
+}
+
+.footer__links-list {
+  display: flex;
+  align-items: center;
+}
+
+.footer__links-list {
+  margin: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__list-element {
+  margin: 0 20px 0 0;
+}
+
+.footer__list-element:last-child {
+  margin: 0;
+}
+
+.footer__link {
+  color: #000;
+}
+
+@media screen and (max-width: 430px) {
+  .footer {
+    padding: 79px 0 10px;
+  }
+
+  .footer__content {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .footer__author {
+    padding: 0 0 21px;
+    margin: 0 0 30px;
+  }
+
+  .footer__misc {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .footer__links-list {
+    margin: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+
+  .footer__list-element {
+    margin: 0 0 12px;
+  }
+}
