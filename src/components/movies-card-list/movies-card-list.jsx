@@ -1,8 +1,20 @@
 import React from 'react';
+import './movies-card-list.css';
+import MoviesCard from './../movies-card/movies-card';
 
 const MoviesCardList = () => {
+
   return (
-    <div></div>
+    <section className='movies-card-list'>
+      <div className='movies-card-list__container'>
+        <ul className='movies-card-list__list'>
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+        </ul>
+        <button className='movies-card-list__more-button'>Ещё</button>
+      </div>
+    </section>
   )
 };
 

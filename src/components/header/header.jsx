@@ -31,7 +31,7 @@ const Header = () => {
           {!isLogin && 
             <div className='header__auth'>
               <Link to='/register' className='app__link header__link'>Регестрация</Link>
-              <Button onClick={onSigninClick} size='small' form='basic' text='Войти' />
+              <Button onClick={onSigninClick} size='small' text='Войти' />
             </div>
           }
         </div>

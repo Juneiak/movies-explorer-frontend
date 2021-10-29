@@ -10,15 +10,15 @@ const Portfolio = () => {
         <ul className='partfolio__works-list'>
           <li className='partfolio__list-element'>
             <p className='partfolio__work-name'>Статичный сайт</p>
-            <img className='partfolio__arrow-image' src={arrowIcon}></img>
+            <img className='partfolio__arrow-image' alt='иконка стрелки' src={arrowIcon}></img>
           </li>
           <li className='partfolio__list-element'>
             <p className='partfolio__work-name'>Адаптивный сайт</p>
-            <img className='partfolio__arrow-image' src={arrowIcon}></img>
+            <img className='partfolio__arrow-image' alt='иконка стрелки' src={arrowIcon}></img>
           </li>
           <li className='partfolio__list-element'>
             <p className='partfolio__work-name'>Одностраничное приложение</p>
-            <img className='partfolio__arrow-image' src={arrowIcon}></img>
+            <img className='partfolio__arrow-image' alt='иконка стрелки' src={arrowIcon}></img>
           </li>
         </ul>
       </div>

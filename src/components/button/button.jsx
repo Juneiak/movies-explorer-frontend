@@ -1,17 +1,14 @@
 import React from 'react';
 import './button.css';
 
-const Button = ({size, form, text=''}) => {
+const Button = ({size, text=''}) => {
   // size = 'big'/'small'
-  // form = 'basic'/'secondarry'
   return (
     <button
-    className={`
-    button
-    ${form==='basic' && size==='small' && 'button_type_basic-small'}
-    ${form==='basic' && size==='big' && 'button_type_basic-big'}
-    ${form==='secondary' && 'button_type_secondary'}
-    `}
+      className={`
+      button
+      ${size==='small' ? 'button_type_basic-small' : 'button_type_basic-big'}
+      `}
     >{text}</button>
   )
 };
