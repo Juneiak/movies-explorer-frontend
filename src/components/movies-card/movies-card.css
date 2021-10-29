@@ -41,10 +41,23 @@
   outline: none;
   background-color: rgba(0, 0, 0, 0);
   transition: 0.3s linear background-color;
+  background-repeat: no-repeat;
 }
 
 .movies-card__like-button_active {
   background-image: url(../../images/like-icon_active.svg);
+}
+
+.movies-card__delete-button {
+  width: 14px;
+  height: 12px;
+  background-image: url(../../images/mini-close-icon.svg);
+  background-position: center;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s linear background-color;
+  background-repeat: no-repeat;
 }
 
 .movies-card__card-image {
