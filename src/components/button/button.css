@@ -30,15 +30,6 @@
   font-size: 14px;
   line-height: 17px;
 }
-.button_type_secondary {
-  background: #F9F9F9;
-  color: #000000;
-  border-radius: 6px;
-  padding: 11px 60px 9px;
-  font-size: 12px;
-  line-height: 15px;
-  width: 200px;
-}
 
 
 @media screen and (max-width: 430px) {

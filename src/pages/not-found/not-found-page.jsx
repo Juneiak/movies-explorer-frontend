@@ -1,5 +1,4 @@
 import React from 'react';
-import { Header, Footer } from '../../components/index'
 import './not-found-page.css';
 
 const NotFoundPage = () => {

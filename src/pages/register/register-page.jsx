@@ -1,29 +1,39 @@
 import React from 'react';
-import { InputContainer, SimpleWindowTitle, Button, QuestionLink} from '../../components/index';
+import { InputContainer, SimpleWindowTitle, Button, QuestionLink } from '../../components/index';
 import './register-page.css';
 
 const RegisterPage = () => {
+
   return (
-    <>
-    <SimpleWindowTitle title='Добро пожаловать!' />
     <main className='register-page'>
-      <form className='register-page__form'>
-        <InputContainer>
-          <input className='register-page__input' type='text' />
-        </InputContainer>
-
-        <InputContainer>
-          <input type />
-        </InputContainer>
-
-        <InputContainer>
-          <input type />
-        </InputContainer>
-      </form>
-      <div style={{'margin-bottom': '16px'}}><Button size='big' text='Зарегистрироваться' /></div>
-      <QuestionLink question='Уже зарегистрированы?' linkText='Войти' linkTo='/signin' />
+      <section className='register-page__content'>
+        <SimpleWindowTitle title='Добро пожаловать!' />
+        <form className='register-page__form'>
+          <fieldset className='register-page__inputs'>
+            <InputContainer
+              inputName='Имя'
+              inputValue='Виталий'
+              inputType='text'
+              isRequired={true}
+            />
+            <InputContainer
+              inputName='E-mail'
+              inputValue='pochta@yandex.ru'
+              inputType='email'
+              isRequired={true}
+            />
+            <InputContainer
+              inputName='Пароль'
+              inputType='password'
+              inputPlaceholder='Ваш пароль'
+              isRequired={true}
+            />
+          </fieldset>
+          <Button onButtonClick buttonType='submit' size='big' text='Зарегистрироваться' />
+        </form>
+        <QuestionLink question='Уже зарегистрированы?' linkText='Войти' linkTo='/signin' />
+      </section>
     </main>
-    </>
   )
 };
 

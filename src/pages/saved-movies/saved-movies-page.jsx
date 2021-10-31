@@ -1,7 +1,7 @@
 
   import React from 'react';
   import './saved-movies-page.css';
-  import { Header, Footer, SearchForm, MoviesCardList } from '../../components/index';
+  import { Header, Footer, SearchForm, MoviesCardList, MoviesCard } from '../../components/index';
   
   const SavedMoviesPage  = () => {
     return (
@@ -9,7 +9,13 @@
         <Header />
         <main className='saved-movies-page'>
           <SearchForm />
-          <MoviesCardList isDeletable={true}/>
+          <MoviesCardList>
+            <MoviesCard isDeletable={true}/>
+            <MoviesCard isDeletable={true}/>
+            <MoviesCard isDeletable={true}/>
+            <MoviesCard isDeletable={true}/>
+            <MoviesCard isDeletable={true}/>
+          </MoviesCardList>
         </main>
         <Footer />
       </>

@@ -40,8 +40,13 @@
   border: none;
   outline: none;
   background-color: rgba(0, 0, 0, 0);
-  transition: 0.3s linear background-color;
+  transition: 0.3s linear opacity;
   background-repeat: no-repeat;
+}
+
+.movies-card__like-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .movies-card__like-button_active {
@@ -56,8 +61,13 @@
   border: none;
   outline: none;
   background-color: rgba(0, 0, 0, 0);
-  transition: 0.3s linear background-color;
+  transition: 0.3s linear opacity;
   background-repeat: no-repeat;
+}
+
+.movies-card__delete-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .movies-card__card-image {

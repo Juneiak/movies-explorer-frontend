@@ -80,7 +80,13 @@
   line-height: 18px;
   border-radius: 48px;
   padding: 8px 13px;
+  transition: linear opacity 0.3s;
   width: min-content;
+}
+
+.search-form__search-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .search-form__checkbox-container {

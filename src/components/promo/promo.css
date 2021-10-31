@@ -34,7 +34,7 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.promo__more-button {
+.promo__more-link {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -45,10 +45,13 @@
   box-sizing: border-box;
   border-radius: 3px;
   background-color:rgba(0, 0, 0, 0);
+  color: #000;
+  text-decoration: none;
+  transition: 0.3s linear opacity;
 }
 
-.promo__more-button:hover {
-  cursor: pointer;
+.promo__more-link:hover {
+  opacity: 0.8;
 }
 
 .promo__landing-image {

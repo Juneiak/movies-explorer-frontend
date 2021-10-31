@@ -1,20 +1,21 @@
 import React from 'react';
 import { Navigation, Account, Button } from '..';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import './header.css';
 import useWindowDimensions from './../../utils/customHooks/use-window-dimensions';
 
 const Header = () => {
-  const isLogin = true;
+  const isLogin = false;
   const { width } = useWindowDimensions();
   const {isExact: mainPageMatch} = useRouteMatch('/');
+  const history = useHistory();
 
   const burgerClickHandler = () => {
 
   };
 
   const onSigninClick = () => {
-
+    history.push('/signin')
   };
 
   return (
@@ -30,8 +31,8 @@ const Header = () => {
           {isLogin && width < 780 && <button onClick={burgerClickHandler} className='header__burger'></button>}
           {!isLogin && 
             <div className='header__auth'>
-              <Link to='/register' className='app__link-animation header__link'>Регестрация</Link>
-              <Button onClick={onSigninClick} size='small' text='Войти' />
+              <Link to='/signup' className='app__link-animation header__link'>Регестрация</Link>
+              <Button onButtonClick={onSigninClick} type='button' size='small' text='Войти' />
             </div>
           }
         </div>

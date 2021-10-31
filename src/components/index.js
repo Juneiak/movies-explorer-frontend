@@ -14,6 +14,10 @@ import Navigation from './navigation/navigation'
 import FilterCheckBox from './filter-check-box/filter-check-box'
 import Account from './account/account';
 import Button from './button/button';
+import InputContainer from './input-container/input-container.jsx';
+import QuestionLink from './question-link/question-link.jsx';
+import SimpleWindowTitle from './simple-window-title/simple-window-title.jsx';
+import PortfolioLink from './portfolio-link/portfolio-link';
 
 export {
   Header,
@@ -32,4 +36,8 @@ export {
   FilterCheckBox,
   Account,
   Button,
+  InputContainer,
+  QuestionLink,
+  SimpleWindowTitle,
+  PortfolioLink,
 };
