@@ -14,7 +14,7 @@ const SearchForm = () => {
           <fieldset className='search-form__text-input-container'>
             <img className='search-form__lupa' src={finderImage} alt='лупа для поиска'/>
             <div className='search-form__search-input'>
-              <input className='search-form__text-input'  type='text' minLength='1' required placeholder='Фильм' />
+              <input className='search-form__text-input' required type='text' minLength='1' required placeholder='Фильм' />
               <span className='search-form__error'></span>
             </div>
             <button className='search-form__search-button'>Найти</button>

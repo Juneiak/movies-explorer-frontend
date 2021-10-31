@@ -5,18 +5,30 @@
   align-items: center;
   flex-direction:column;
 }
-
 .app__link {
-  font-family: "inter", 'Arial', 'Helvetica', sans-serif;
-  font-weight: 400;
-  transition: linear opacity 0.3s;
   text-decoration:none;
-}
-
-.app__link:hover {
-  opacity: 0.7;
+  font-size: 13px;
+  line-height: 16px;
 }
 
 .app__link_active {
   font-weight: 500;
+}
+
+.app__link-animation {
+  font-family: "inter", 'Arial', 'Helvetica', sans-serif;
+  transition: linear opacity 0.3s;
+  text-decoration:none;
+}
+
+.app__link-animation:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 430px) {
+  .app__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }

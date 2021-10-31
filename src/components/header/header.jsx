@@ -30,7 +30,7 @@ const Header = () => {
           {isLogin && width < 780 && <button onClick={burgerClickHandler} className='header__burger'></button>}
           {!isLogin && 
             <div className='header__auth'>
-              <Link to='/register' className='app__link header__link'>Регестрация</Link>
+              <Link to='/register' className='app__link-animation header__link'>Регестрация</Link>
               <Button onClick={onSigninClick} size='small' text='Войти' />
             </div>
           }
