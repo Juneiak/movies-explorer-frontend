@@ -59,6 +59,12 @@
   background-color: rgba(0, 0, 0, 0);
   background-position: center;
   padding: 0;
+  transition: 0.3s linear opacity;
+}
+
+.header__burger:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 780px) {

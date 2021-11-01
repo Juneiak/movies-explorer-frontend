@@ -18,6 +18,7 @@ import InputContainer from './input-container/input-container.jsx';
 import QuestionLink from './question-link/question-link.jsx';
 import SimpleWindowTitle from './simple-window-title/simple-window-title.jsx';
 import PortfolioLink from './portfolio-link/portfolio-link';
+import SlideMenu from './slide-menu/slide-menu';
 
 export {
   Header,
@@ -40,4 +41,5 @@ export {
   QuestionLink,
   SimpleWindowTitle,
   PortfolioLink,
+  SlideMenu,
 };

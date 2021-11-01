@@ -46,7 +46,7 @@
 
 .movies-card__like-button:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .movies-card__like-button_active {
@@ -67,7 +67,7 @@
 
 .movies-card__delete-button:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .movies-card__card-image {
