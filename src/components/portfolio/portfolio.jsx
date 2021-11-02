@@ -1,6 +1,6 @@
 import React from 'react';
 import './portfolio.css';
-import { PortfolioLink } from '../index';
+import PortfolioLink from '../portfolio-link/portfolio-link';
 
 const Portfolio = () => {
   return (
@@ -8,9 +8,9 @@ const Portfolio = () => {
       <div className='partfolio__content'>
         <h4 className='partfolio__partfolio-title'>Портфолио</h4>
         <ul className='partfolio__works-list'>
-          <PortfolioLink to='' workName='Статичный сайт' />
-          <PortfolioLink to='' workName='Адаптивный сайт' />
-          <PortfolioLink to='' workName='Одностраничное приложение' />
+          <PortfolioLink linkTo='/' workName='Статичный сайт' />
+          <PortfolioLink linkTo='/' workName='Адаптивный сайт' />
+          <PortfolioLink linkTo='/' workName='Одностраничное приложение' />
         </ul>
       </div>
     </section>

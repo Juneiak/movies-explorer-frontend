@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './simple-window-title.css';
-import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
+import logo from '../../images/logo.svg';
 
 const SimpleWindowTitle = ({ title }) => {
   return (
@@ -11,7 +12,10 @@ const SimpleWindowTitle = ({ title }) => {
       </Link>
       <p className='simple-window-title__title'>{title}</p>
     </div>
-  )
-}
+  );
+};
+SimpleWindowTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default SimpleWindowTitle;

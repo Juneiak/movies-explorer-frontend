@@ -1,9 +1,10 @@
 import React from 'react';
-import { InputContainer, SimpleWindowTitle, Button, QuestionLink } from '../../components/index';
+import {
+  InputContainer, SimpleWindowTitle, Button, QuestionLink,
+} from '../../components/index';
 import './register-page.css';
 
 const RegisterPage = () => {
-
   return (
     <main className='register-page'>
       <section className='register-page__content'>
@@ -14,27 +15,27 @@ const RegisterPage = () => {
               inputName='Имя'
               inputValue='Виталий'
               inputType='text'
-              isRequired={true}
+              isRequired
             />
             <InputContainer
               inputName='E-mail'
               inputValue='pochta@yandex.ru'
               inputType='email'
-              isRequired={true}
+              isRequired
             />
             <InputContainer
               inputName='Пароль'
               inputType='password'
               inputPlaceholder='Ваш пароль'
-              isRequired={true}
+              isRequired
             />
           </fieldset>
-          <Button onButtonClick buttonType='submit' size='big' text='Зарегистрироваться' />
+          <Button onButtonClick={() => {}} buttonType='submit' size='big' text='Зарегистрироваться' />
         </form>
         <QuestionLink question='Уже зарегистрированы?' linkText='Войти' linkTo='/signin' />
       </section>
     </main>
-  )
+  );
 };
 
 export default RegisterPage;

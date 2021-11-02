@@ -11,7 +11,8 @@ const Navigation = () => {
             to='/movies'
             className='app__link app__link-animation navigation__link'
             activeClassName='app__link_active'
-            >Фильмы
+          >
+            Фильмы
           </NavLink>
         </li>
         <li className='navigation__list-element'>
@@ -19,12 +20,13 @@ const Navigation = () => {
             to='/saved-movies'
             className='app__link app__link-animation navigation__link'
             activeClassName='app__link_active'
-            >Сохранённые фильмы
+          >
+            Сохранённые фильмы
           </NavLink>
         </li>
       </ul>
     </nav>
-  )
+  );
 };
 
 export default Navigation;

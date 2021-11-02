@@ -21,7 +21,7 @@ const Techs = () => {
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default Techs;

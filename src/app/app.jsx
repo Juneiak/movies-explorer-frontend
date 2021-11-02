@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import {
   MainPage,
   MoviesPage,
@@ -9,16 +9,15 @@ import {
   ProfilePage,
   NotFoundPage,
 } from '../pages';
-import SlideMenu from './../components/slide-menu/slide-menu';
+import SlideMenu from '../components/slide-menu/slide-menu';
 import './app.css';
-import SlideMenuContext from './../contexts/slide-menu-context';
+import SlideMenuContext from '../contexts/slide-menu-context';
 
 function App() {
-
-  const [ isSlideMenuOpen, setIsSlideMenuOpen ] = React.useState(false);
+  const [isSlideMenuOpen, setIsSlideMenuOpen] = React.useState(false);
 
   return (
-    <div className="app">
+    <div className='app'>
       <SlideMenuContext.Provider value={setIsSlideMenuOpen}>
         <Switch>
 
@@ -29,7 +28,7 @@ function App() {
           <Route path='/movies'>
             <MoviesPage />
           </Route>
-          
+
           <Route path='/saved-movies'>
             <SavedMoviesPage />
           </Route>
@@ -52,11 +51,10 @@ function App() {
 
         </Switch>
 
-        {isSlideMenuOpen &&
-        <SlideMenu isOpen={isSlideMenuOpen} />
-        }
+        {isSlideMenuOpen
+        && <SlideMenu isOpen={isSlideMenuOpen} />}
       </SlideMenuContext.Provider>
     </div>
-  )
+  );
 }
 export default App;

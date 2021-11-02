@@ -2,7 +2,6 @@ import React from 'react';
 import './movies-card-list.css';
 
 const MoviesCardList = ({ children }) => {
-
   return (
     <section className='movies-card-list'>
       <div className='movies-card-list__container'>
@@ -12,7 +11,7 @@ const MoviesCardList = ({ children }) => {
         <button className='movies-card-list__more-button'>Ещё</button>
       </div>
     </section>
-  )
+  );
 };
 
 export default MoviesCardList;

@@ -8,7 +8,7 @@ const FilterCheckBox = () => {
       <div className='filter-check-box__pseudo' />
       <div className='filter-check-box__dot' />
     </label>
-  )
+  );
 };
 
 export default FilterCheckBox;

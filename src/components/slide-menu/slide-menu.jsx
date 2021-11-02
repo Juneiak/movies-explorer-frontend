@@ -1,26 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './slide-menu.css';
-import { Account } from '../index';
+import Account from '../account/account';
 import SlideMenuLink from './slide-menu-link';
 import SlideMenuContext from '../../contexts/slide-menu-context';
 
 const slideMenuRoot = document.querySelector('#react-slide-menu');
 
 const SlideMenu = () => {
-  const [ isOpen, setIsOpen ] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   const setIsSlideMenuOpen = React.useContext(SlideMenuContext);
-  const slideMenuRef = React.useRef()
+
   React.useEffect(() => {
     setIsOpen(true);
-  }, [])
+  }, []);
 
   const closeSlideMenu = () => {
     setIsOpen(false);
     setTimeout(() => {
-      setIsSlideMenuOpen(false)
-    }, 300)
-  }
+      setIsSlideMenuOpen(false);
+    }, 300);
+  };
 
   return ReactDOM.createPortal((
     <section onClick={closeSlideMenu} className={`slide-menu ${isOpen && 'slide-menu_opened'}`}>
@@ -29,16 +29,16 @@ const SlideMenu = () => {
         <div className='slide-menu__content'>
           <nav className='slide-menu__navigation'>
             <ul className='slide-menu__nav-list'>
-              <SlideMenuLink linkName='Главная' linkTo='/' />
-              <SlideMenuLink linkName='Фильмы' linkTo='/movies' />
-              <SlideMenuLink linkName='Сохранённые фильмы' linkTo='/saved-movies' />
+              <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Главная' linkTo='/' />
+              <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Фильмы' linkTo='/movies' />
+              <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Сохранённые фильмы' linkTo='/saved-movies' />
             </ul>
           </nav>
           <Account />
         </div>
       </div>
     </section>
-  ), slideMenuRoot)
-}
+  ), slideMenuRoot);
+};
 
 export default SlideMenu;

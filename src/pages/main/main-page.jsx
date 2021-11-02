@@ -12,7 +12,6 @@ import {
 import './main-page.css';
 
 const MainPage = () => {
-
   return (
     <>
       <Header />
@@ -26,7 +25,7 @@ const MainPage = () => {
       </main>
       <Footer />
     </>
-  )
+  );
 };
 
 export default MainPage;

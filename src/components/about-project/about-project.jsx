@@ -28,7 +28,7 @@ const AboutProject = () => {
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default AboutProject;

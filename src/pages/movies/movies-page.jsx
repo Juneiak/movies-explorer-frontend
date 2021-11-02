@@ -1,6 +1,8 @@
 import React from 'react';
 import './movies-page.css';
-import { Header, Footer, SearchForm, MoviesCardList, MoviesCard } from '../../components/index';
+import {
+  Header, Footer, SearchForm, MoviesCardList, MoviesCard,
+} from '../../components/index';
 
 const MoviesPage = () => {
   return (
@@ -17,7 +19,7 @@ const MoviesPage = () => {
       </main>
       <Footer />
     </>
-  )
+  );
 };
 
 export default MoviesPage;
