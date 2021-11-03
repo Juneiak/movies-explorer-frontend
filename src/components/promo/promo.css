@@ -1,0 +1,125 @@
+.promo {
+  width: 100%;
+  background-color: #F3C1F8;
+  padding: 75px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.promo__content {
+  max-width: 1140px;
+  width: 89%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.promo__about {
+  max-width: 640px;
+}
+
+.promo__title {
+  margin: 0 0 36px;
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+}
+
+.promo__subtitle {
+  margin: 0 0 146px;
+  max-width: 310px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.promo__more-link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  border: none;
+  padding: 10px 20px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color:rgba(0, 0, 0, 0);
+  color: #000;
+  text-decoration: none;
+  transition: 0.3s linear opacity;
+}
+
+.promo__more-link:hover {
+  opacity: 0.8;
+}
+
+.promo__landing-image {
+  width: 310px;
+  height: 304px;
+}
+
+@media screen and (max-width: 780px) {
+  .promo {
+    padding: 140px 0 76px;
+  }
+
+  .promo__content {
+    width: 92%;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .promo__about {
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .promo__title {
+    margin: 0 0 22px;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+  }
+  
+  .promo__subtitle {
+    margin: 0 0 92px;
+    max-width: 260px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  .promo__landing-image {
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .promo {
+    padding: 70px 0 30px;
+  }
+
+  .promo__content {
+    width: 91%;
+  }
+
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    margin: 0 0 24px;
+  }
+
+  .promo__subtitle {
+    margin: 0 0 80px;
+  }
+
+  .promo__landing-image {
+    width: 210px;
+    height: 206px;
+  }
+}

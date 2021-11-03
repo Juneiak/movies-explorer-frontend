@@ -1,0 +1,36 @@
+.slide-menu-link {
+  margin: 0 0 28px;
+}
+
+.slide-menu-link:last-child {
+  margin: 0;
+}
+
+.slide-menu-link__link {
+  font-family: "inter", 'Arial', 'Helvetica', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000;
+  text-decoration: none;
+  padding-bottom: 4px;
+  transition: border-color 0.3s linear;
+  border-color: rgba(0, 0, 0, 0)
+}
+
+.slide-menu-link__link:hover {
+  border-bottom: 1px solid; 
+}
+
+.slide-menu-link__link_active {
+  border-bottom: 1px solid #000;
+}
+
+@media screen and (max-width: 600px) {
+  .slide-menu-link {
+    margin: 0 0 24px;
+  }
+  .slide-menu-link__link {
+    padding-bottom: 7px;
+  }
+}

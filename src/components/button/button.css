@@ -1,0 +1,50 @@
+.button {
+  font-family: 'Inter' 'Arial', 'Helvetica', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-style: normal;
+  background: #000000;
+  border-radius: 3px;
+  color: #FFFFFF;
+  transition: linear opacity 0.3s;
+  opacity: 1;
+  border: none;
+}
+
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.button_type_basic-small {
+  padding: 8px 20px;
+  width: max-content;
+  font-size: 12px;
+  line-height: 16px;
+}
+.button_type_basic-big {
+  width:100%;
+  padding: 13px 20px 15px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+
+@media screen and (max-width: 430px) {
+  .button_type_basic-small {
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+  .button_type_basic-big {
+    padding: 15px 20px 15px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  
+  .button_type_secondary {
+    padding: 11px 20px 9px;
+  }
+}

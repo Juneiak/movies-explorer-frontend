@@ -1,0 +1,27 @@
+.main-page {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items:center;
+}
+
+.main-page__title {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  width: 100%;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #000000;
+  margin: 0;
+}
+
+@media screen and (max-width: 430px) {
+
+  .about-page__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

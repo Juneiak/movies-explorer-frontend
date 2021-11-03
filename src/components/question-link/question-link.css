@@ -1,0 +1,25 @@
+.question-link {
+  display:flex;
+  align-items:center;
+}
+
+.question-link__question {
+  margin: 0 6px 0 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+}
+
+.question-link__link {
+  color: #000;
+}
+
+@media screen and (max-width: 430px) {
+  .question-link__question {
+    margin: 0 7px 0 0;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
