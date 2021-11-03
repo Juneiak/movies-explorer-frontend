@@ -17,7 +17,7 @@ const MainPage = () => {
       <Header />
       <main className='main-page'>
         <Promo />
-        <NavTab />
+        {/* <NavTab /> */}
         <AboutProject />
         <Techs />
         <AboutMe />

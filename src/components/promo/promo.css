@@ -1,7 +1,7 @@
 .promo {
   width: 100%;
   background-color: #F3C1F8;
-  padding: 75px 0 25px;
+  padding: 75px 0;
   display: flex;
   justify-content: center;
 }
@@ -61,7 +61,7 @@
 
 @media screen and (max-width: 780px) {
   .promo {
-    padding: 140px 0 10px;
+    padding: 140px 0 76px;
   }
 
   .promo__content {
@@ -101,7 +101,7 @@
 
 @media screen and (max-width: 430px) {
   .promo {
-    padding: 70px 0 10px;
+    padding: 70px 0 30px;
   }
 
   .promo__content {
