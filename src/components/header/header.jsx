@@ -5,11 +5,11 @@ import Account from '../account/account';
 import Button from '../button/button';
 import './header.css';
 import useWindowDimensions from '../../utils/customHooks/use-window-dimensions';
-import SlideMenuContext from '../../contexts/slide-menu-context';
+import {SlideMenuContext, CurrentUserContext} from '../../contexts/index';
 
 const Header = () => {
-  const isLogin = true;
-
+  const currentUser = React.useContext(CurrentUserContext);
+  const isLogin = Boolean(currentUser?.email);
   const { width } = useWindowDimensions();
   const { isExact: mainPageMatch } = useRouteMatch('/');
   const history = useHistory();

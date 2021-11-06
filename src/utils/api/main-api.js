@@ -3,6 +3,7 @@ import { checkStatus, mainApiUrl } from './api-utils';
 const signIn = (email, password) => (
   fetch(`${mainApiUrl}/signin`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -18,6 +19,7 @@ const signIn = (email, password) => (
 const signUp = (name, email, password) => (
   fetch(`${mainApiUrl}/signup`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -70,6 +72,7 @@ const getMoviesData = () => (
 const addToMyMovie = ({ movieData }) => {
   fetch(`${mainApiUrl}/movies`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
     },

@@ -8,6 +8,7 @@ const InputContainer = ({
   inputType = 'text',
   inputPlaceholder = '',
   isRequired = false,
+  inputOnChange = () => {},
 }) => {
   return (
     <div className='input-container'>
@@ -18,6 +19,7 @@ const InputContainer = ({
         type={inputType}
         placeholder={inputPlaceholder}
         required={isRequired}
+        onChange={inputOnChange}
       />
       <span className='input-container__error'>errr</span>
     </div>
@@ -30,6 +32,7 @@ InputContainer.propTypes = {
   inputType: PropTypes.string.isRequired,
   inputPlaceholder: PropTypes.string,
   isRequired: PropTypes.bool.isRequired,
+  inputOnChange: PropTypes.func,
 };
 
 export default InputContainer;

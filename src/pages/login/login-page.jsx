@@ -4,7 +4,15 @@ import {
 } from '../../components/index';
 import './login-page.css';
 
-const LoginPage = () => {
+const LoginPage = ({ onSigninButtonClick }) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const handleEmailChange = (evt) => setEmail(evt.target.value);
+  const handlePasswordChange = (evt) => setPassword(evt.target.value);
+
+  const handleSignin = () => onSigninButtonClick(email, password);
+
   return (
     <main className='login-page'>
       <section className='login-page__content'>
@@ -13,18 +21,21 @@ const LoginPage = () => {
           <fieldset className='login-page__inputs'>
             <InputContainer
               inputName='E-mail'
-              inputValue='pochta@yandex.ru'
+              inputValue={email}
               inputType='email'
               isRequired
+              inputOnChange={handleEmailChange}
             />
             <InputContainer
               inputName='Пароль'
+              inputValue={password}
               inputType='password'
               inputPlaceholder='Ваш пароль'
               isRequired
+              inputOnChange={handlePasswordChange}
             />
           </fieldset>
-          <Button onButtonClick={() => {}} buttonType='submit' size='big' text='Войти' />
+          <Button onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
         </form>
         <QuestionLink question='Ещё не зарегистрированы?' linkText='Регистрация' linkTo='/signup' />
       </section>
