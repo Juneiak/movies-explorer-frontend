@@ -56,7 +56,6 @@ function App() {
   const getUserDataHandler = () => {
     setIsAuthLoaded(false);
     const savedUser = getExpiringItemFromLS('user');
-    console.log(savedUser);
     if (savedUser) {
       setLoadedUser(savedUser);
       return Promise.resolve(savedUser);
@@ -65,7 +64,6 @@ function App() {
       .then((currentUserData) => {
         setLoadedUser(currentUserData);
         setExpiringItemToLS('user', currentUserData, 1000 * 60 * 5);
-        console.log(currentUserData);
         return currentUserData;
       })
       .catch((err) => {
