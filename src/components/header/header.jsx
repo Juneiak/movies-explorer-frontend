@@ -4,12 +4,12 @@ import Navigation from '../navigation/navigation';
 import Account from '../account/account';
 import Button from '../button/button';
 import './header.css';
-import useWindowDimensions from '../../utils/customHooks/use-window-dimensions';
+import useWindowDimensions from '../../utils/custom-hooks/use-window-dimensions';
 import {SlideMenuContext, CurrentUserContext} from '../../contexts/index';
 
 const Header = () => {
-  const currentUser = React.useContext(CurrentUserContext);
-  const isLogin = Boolean(currentUser?.email);
+  const { currentUser } = React.useContext(CurrentUserContext);
+  const isLoggedIn = currentUser?.email
   const { width } = useWindowDimensions();
   const { isExact: mainPageMatch } = useRouteMatch('/');
   const history = useHistory();
@@ -31,11 +31,11 @@ const Header = () => {
     >
       <div className='header__content'>
         <Link className='header__logo-link' to='/' />
-        {isLogin && width > 780 && <Navigation />}
+        {isLoggedIn && width > 780 && <Navigation />}
         <div className='headar__menu'>
-          {isLogin && width > 780 && <Account />}
-          {isLogin && width < 780 && <button onClick={burgerClickHandler} className='header__burger' />}
-          {!isLogin
+          {isLoggedIn && width > 780 && <Account />}
+          {isLoggedIn && width < 780 && <button onClick={burgerClickHandler} className='header__burger' />}
+          {!isLoggedIn
             && (
             <div className='header__auth'>
               <Link to='/signup' className='app__link-animation header__link'>Регестрация</Link>

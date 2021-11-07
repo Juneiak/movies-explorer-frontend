@@ -52,16 +52,19 @@ const getUserData = () => (
   .then(checkStatus)
 );
 
-const updateUserData = (email, name) => {
+const updateUserData = (email, name) => (
   fetch(`${mainApiUrl}/users/me`, {
-    method: 'UPDATE',
+    method: 'PATCH',
     credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({ email, name })
   })
   .then(checkStatus)
-};
+);
 
-const getMoviesData = () => (
+const getSavedMoviesData = () => (
   fetch(`${mainApiUrl}/movies`, {
     method: 'GET',
     credentials: 'include'
@@ -69,7 +72,7 @@ const getMoviesData = () => (
   .get(checkStatus)
 );
 
-const addToMyMovie = ({ movieData }) => {
+const addMovieToUsersList = ({ movieData }) => {
   fetch(`${mainApiUrl}/movies`, {
     method: 'POST',
     credentials: 'include',
@@ -81,7 +84,7 @@ const addToMyMovie = ({ movieData }) => {
   .then(checkStatus)
 }
 
-const deleteMovie = (movieId) => {
+const deleteMovieFromUserList = (movieId) => {
   fetch(`${mainApiUrl}/movies/${movieId}`, {
     method: 'DELETE',
     credentials: 'include'
@@ -95,7 +98,7 @@ export {
   signIn,
   signUp,
   signOut,
-  getMoviesData,
-  addToMyMovie,
-  deleteMovie,
+  addMovieToUsersList,
+  getSavedMoviesData,
+  deleteMovieFromUserList,
 };

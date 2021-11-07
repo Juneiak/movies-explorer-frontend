@@ -2,7 +2,7 @@ import React from 'react';
 import './search-from.css';
 import finderImage from '../../images/search-icon.svg';
 import FilterCheckBox from '../filter-check-box/filter-check-box';
-import useWindowDimensions from '../../utils/customHooks/use-window-dimensions';
+import useWindowDimensions from '../../utils/custom-hooks/use-window-dimensions';
 
 const SearchForm = () => {
   const { width } = useWindowDimensions();

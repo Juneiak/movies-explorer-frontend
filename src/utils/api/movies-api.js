@@ -1,10 +1,10 @@
 import { checkStatus, moviesApiUrl } from './api-utils';
 
-const moviesData = () => (
+const getMoviesData = () => (
   fetch(moviesApiUrl, {
     method: 'GET'
   })
   .then(checkStatus)
 );
 
-export { moviesData };
+export { getMoviesData };
