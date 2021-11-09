@@ -4,9 +4,11 @@ import {
   Header, Footer, SearchForm, MoviesCardList, MoviesCard, Preloader,
 } from '../../components/index';
 import { toFilter } from '../../utils/app-utils/app-utils';
-const MoviesPage = ({getAllMoviesHandler}) => {
+
+const MoviesPage = ({ getAllMoviesHandler }) => {
 
   const [filteredMovies, setFilterdMovies] = React.useState([]);
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
@@ -51,7 +53,7 @@ const MoviesPage = ({getAllMoviesHandler}) => {
         : 
         <MoviesCardList onMoreButtonClick={moreHandler}  buttonStatus={isMoreButtonActive}>
           {filteredMovies.slice(0, numberOfElements).map((item, index) => (
-            <MoviesCard item={item} key={item.id} />
+            <MoviesCard cardData={item} key={index} />
           ))}
         </MoviesCardList>
         )

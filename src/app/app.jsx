@@ -19,32 +19,75 @@ import {
   getSavedMoviesData,
   deleteMovieFromUserList,
 } from '../utils/api/main-api';
-import { getMoviesData } from '../utils/api/movies-api';
-import SlideMenu from '../components/slide-menu/slide-menu';
-import './app.css';
-import { SlideMenuContext, CurrentUserContext} from '../contexts/index';
-import ProtectedRoute from '../components/hocs/protected-route';
+import {
+  SlideMenuContext,
+  CurrentUserContext,
+  CardActionContext
+} from '../contexts/index';
 import {
   setExpiringItemToLS,
   getExpiringItemFromLS 
 } from '../utils/custom-local-storge/expirig-local-storge';
+import { getMoviesData } from '../utils/api/movies-api';
+import SlideMenu from '../components/slide-menu/slide-menu';
+import { normalizeMoviesApiData } from '../utils/app-utils/app-utils';
+import './app.css';
+import ProtectedRoute from '../components/hocs/protected-route';
+
 function App() {
+
   const [isAuthLoaded, setIsAuthLoaded] = React.useState(false);
   const [isSlideMenuOpen, setIsSlideMenuOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  
+  const [likedMoviesIdList, setLikedMoviesIdList] = React.useState([]);
+
   const history = useHistory();
+
+  const getUserMoviesHandler = () => (
+    getSavedMoviesData()
+    .then((userMoviesData) => {
+      setLikedMoviesIdList(userMoviesData.map((movie) => movie.movieId))
+      return userMoviesData;
+    })
+      .catch((err) => {
+        console.error(`get saved movies error in app - ${err.message}`);
+        return Promise.reject(err);
+      })
+  );
+
+  const addMovieHandler = (newMovieData) => (
+    addMovieToUsersList(newMovieData)
+      .then((createdMovieData) => getUserMoviesHandler()
+        .then(() => createdMovieData))
+      .catch((err) => {
+        console.error(`add movie to user list error in app - ${err}`);
+        return Promise.reject(err);
+      })
+  );
+  
+  const deleteMovieHandler = (movieId) => (
+    deleteMovieFromUserList(movieId)
+      .then((deletedMovieData) => getUserMoviesHandler()
+        .then(() => deletedMovieData))
+      .catch((err) => {
+        console.error(`delete movie to user list error in app - ${err}`);
+        return Promise.reject(err);
+      })
+  )
 
   const getAllMoviesHandler = () => {
     const savedMovies = getExpiringItemFromLS('allMovies');
     if (savedMovies) return Promise.resolve(savedMovies);
     return getMoviesData()
       .then((moviesList) => {
-        setExpiringItemToLS('allMovies', moviesList, 1000 * 60 * 5);
+        const handledMoviesList = normalizeMoviesApiData(moviesList);
+        setExpiringItemToLS('allMovies', handledMoviesList, 1000 * 60 * 5);
         return moviesList;
       })
       .catch((err) => {
-        console.error(`get movies error in app - ${err.message}`);
-        return err;
+        console.error(`get movies error in app - ${err}`);
+        return Promise.reject(err);
       })
     };
 
@@ -67,9 +110,9 @@ function App() {
         return currentUserData;
       })
       .catch((err) => {
-        console.error(`get current user data error in app - ${err.message}`);
+        console.error(`get current user data error in app - ${err}`);
         setLoadedUser({});
-        return err;
+        return Promise.reject(err);
       })
   };
 
@@ -80,7 +123,7 @@ function App() {
         getUserDataHandler()
           .then(() => history.push('/movies'))
       })
-      .catch((err) => console.error(`signIn error in app - ${err.message}`))
+      .catch((err) => console.error(`signIn error in app - ${err}`))
   };
 
   const signupHandler = (name, email, password) => {
@@ -90,7 +133,7 @@ function App() {
         getUserDataHandler()
         .then(() => history.push('/movies'))
       })
-      .catch((err) => console.error(`signUp error in app - ${err.message}`))
+      .catch((err) => console.error(`signUp error in app - ${err}`))
   };
 
   const signoutHandler = () => {
@@ -102,7 +145,7 @@ function App() {
       setLoadedUser({});
       history.push('/');
     })
-    .catch((err) => console.error(`signOut error in app - ${err.message}`)) 
+    .catch((err) => console.error(`signOut error in app - ${err}`)) 
   };
 
   const updateUserDataHandler = (name, email) => {
@@ -110,58 +153,62 @@ function App() {
       .then((updatedCurrentUserData) => {
         setCurrentUser(updatedCurrentUserData);
       })
-      .catch((err) => console.error(`current user data update error in app - ${err.message}`));
+      .catch((err) => console.error(`current user data update error in app - ${err}`));
   };
 
   React.useEffect(() => {
     getUserDataHandler();
     getAllMoviesHandler();
+    getUserMoviesHandler();
   }, []);
 
   return (
     <div className='app'>
       <CurrentUserContext.Provider value={{ isAuthLoaded, currentUser }}>
         <SlideMenuContext.Provider value={setIsSlideMenuOpen}>
-          <Switch>
+          <CardActionContext.Provider value={{ addMovieHandler, deleteMovieHandler, likedMoviesIdList }} >
+            <Switch>
 
-            <Route exact path='/'>
-              <MainPage />
-            </Route>
+              <Route exact path='/'>
+                <MainPage />
+              </Route>
 
-            <ProtectedRoute
-            path='/movies'
-            component={MoviesPage}
-            getAllMoviesHandler={getAllMoviesHandler}
-            />
+              <ProtectedRoute
+              path='/movies'
+              component={MoviesPage}
+              getAllMoviesHandler={getAllMoviesHandler}
+              />
 
-            <ProtectedRoute
-            path='/saved-movies'
-            component={SavedMoviesPage}
-            />
+              <ProtectedRoute
+              path='/saved-movies'
+              component={SavedMoviesPage}
+              getUserMoviesHandler={getUserMoviesHandler}
+              />
+              
+              <ProtectedRoute
+                path='/profile'
+                onSignoutButtonClick={signoutHandler}
+                onUpdateButtonClick={updateUserDataHandler}
+                component={ProfilePage}
+              />
 
-            <ProtectedRoute
-              path='/profile'
-              onSignoutButtonClick={signoutHandler}
-              onUpdateButtonClick={updateUserDataHandler}
-              component={ProfilePage}
-            />
+              <Route path='/signin'>
+                <LoginPage onSigninButtonClick={signinHandler} />
+              </Route>
 
-            <Route path='/signin'>
-              <LoginPage onSigninButtonClick={signinHandler} />
-            </Route>
+              <Route path='/signup'>
+                <RegisterPage  onSignupButtonClick={signupHandler} />
+              </Route>
 
-            <Route path='/signup'>
-              <RegisterPage  onSignupButtonClick={signupHandler} />
-            </Route>
+              <Route path='*'>
+                <NotFoundPage />
+              </Route>
 
-            <Route path='*'>
-              <NotFoundPage />
-            </Route>
+            </Switch>
 
-          </Switch>
-
-          {isSlideMenuOpen
-          && <SlideMenu isOpen={isSlideMenuOpen} />}
+            {isSlideMenuOpen
+            && <SlideMenu isOpen={isSlideMenuOpen} />}
+          </CardActionContext.Provider>
         </SlideMenuContext.Provider>
       </CurrentUserContext.Provider>
     </div>

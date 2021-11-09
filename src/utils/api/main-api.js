@@ -69,28 +69,28 @@ const getSavedMoviesData = () => (
     method: 'GET',
     credentials: 'include'
   })
-  .get(checkStatus)
+  .then(checkStatus)
 );
 
-const addMovieToUsersList = ({ movieData }) => {
+const addMovieToUsersList = (movieData) => (
   fetch(`${mainApiUrl}/movies`, {
     method: 'POST',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ ...movieData })
+    body: JSON.stringify(movieData)
   })
   .then(checkStatus)
-}
+);
 
-const deleteMovieFromUserList = (movieId) => {
+const deleteMovieFromUserList = (movieId) => (
   fetch(`${mainApiUrl}/movies/${movieId}`, {
     method: 'DELETE',
     credentials: 'include'
   })
   .then(checkStatus)
-}
+)
 
 export {
   updateUserData,

@@ -1,7 +1,7 @@
 import React from 'react';
 import './movies-card-list.css';
 
-const MoviesCardList = ({ children, onMoreButtonClick, buttonStatus }) => {
+const MoviesCardList = ({ children, onMoreButtonClick=function(){}, buttonStatus }) => {
 
   return (
     <section className='movies-card-list'>

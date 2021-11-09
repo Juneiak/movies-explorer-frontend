@@ -7,4 +7,20 @@ const toFilter = (data, searchParams) => {
   else return data.filter(item => filterRegex.test(item.nameRU.toLowerCase()))
 };
 
-export { toFilter };
+
+const normalizeMoviesApiData = (unhandledMoviesList) => unhandledMoviesList.map((movie) => ({
+  country: movie.country,
+  director: movie.director,
+  duration: movie.duration,
+  year: movie.year,
+  description: movie.description,
+  image: `https://api.nomoreparties.co${movie.image.url}`,
+  trailer: movie.trailerLink,
+  nameRU: movie.nameRU,
+  nameEN: movie.nameEN,
+  thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+  movieId: movie.id,
+}))
+
+export { toFilter, normalizeMoviesApiData };
+
