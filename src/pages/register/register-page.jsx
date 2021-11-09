@@ -3,17 +3,22 @@ import {
   InputContainer, SimpleWindowTitle, Button, QuestionLink,
 } from '../../components/index';
 import './register-page.css';
+import { useFormWithValidation } from '../../utils/custom-hooks/use-form';
 
 const RegisterPage = ({ onSignupButtonClick }) => {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [registerError, setRegisterError] = React.useState('');
+  const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
 
-  const handleNameChange = (evt) => setName(evt.target.value);
-  const handleEmailChange = (evt) => setEmail(evt.target.value);
-  const handlePasswordChange = (evt) => setPassword(evt.target.value);
+  const handleSignup = () => {
+    onSignupButtonClick(values.signupName, values.signupEmail, values.signupPassword)
+      .then(() => resetForm())
+      .catch((err) => setRegisterError(err))
+  };
 
-  const handleSignup = () => onSignupButtonClick(name, email, password);
+  const handleInputChange = (evt) => {
+    handleChange(evt);
+    setRegisterError('');
+  };
 
   return (
     <main className='register-page'>
@@ -22,29 +27,40 @@ const RegisterPage = ({ onSignupButtonClick }) => {
         <form className='register-page__form'>
           <fieldset className='register-page__inputs'>
             <InputContainer
-              inputName='Имя'
-              inputValue={name}
+              inputTitle='Имя'
+              inputValue={values.signupName}
               inputType='text'
               isRequired
-              inputOnChange={handleNameChange}
+              inputOnChange={handleInputChange}
+              inputName='signupName'
+              inputErrors={errors.signupName}
+              maxLength={30}
+              minLength={2}
             />
             <InputContainer
-              inputName='E-mail'
-              inputValue={email}
+              inputTitle='E-mail'
+              inputValue={values.signupEmail}
               inputType='email'
               isRequired
-              inputOnChange={handleEmailChange}
+              inputOnChange={handleInputChange}
+              inputName='signupEmail'
+              inputErrors={errors.signupEmail}
             />
             <InputContainer
-              inputName='Пароль'
-              inputValue={password}
+              inputTitle='Пароль'
+              inputValue={values.signupPassword}
               inputType='password'
               inputPlaceholder='Ваш пароль'
               isRequired
-              inputOnChange={handlePasswordChange}
+              inputOnChange={handleInputChange}
+              inputName='signupPassword'
+              inputErrors={errors.signupPassword}
             />
           </fieldset>
-          <Button onButtonClick={handleSignup} buttonType='button' size='big' text='Зарегистрироваться' />
+          <div className='register-page__button-container'>
+            <p className='register-page__error'>{registerError}</p>
+            <Button active={isValid} onButtonClick={handleSignup} buttonType='button' size='big' text='Зарегистрироваться' />
+          </div>
         </form>
         <QuestionLink question='Уже зарегистрированы?' linkText='Войти' linkTo='/signin' />
       </section>

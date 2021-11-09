@@ -84,7 +84,16 @@
   display: flex;
   flex-direction:column;
   align-items:center;
+}
 
+.profile-page__update-error {
+  margin: 0 0 10px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #FF4062;
+  width:100%;
+  text-align: center;
 }
 
 .profile-page__button {
@@ -94,6 +103,10 @@
   padding: 0;
   margin: 0;
   font-weight: 400px;
+}
+
+.profile-page__button_inactive {
+  color: #bebebe;
 }
 
 .profile-page__button:hover {

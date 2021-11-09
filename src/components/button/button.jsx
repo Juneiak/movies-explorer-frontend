@@ -7,6 +7,7 @@ const Button = ({
   text = '',
   onButtonClick,
   buttonType = 'button',
+  active=false
 }) => {
   // size = 'big'/'small'
   return (
@@ -14,9 +15,11 @@ const Button = ({
       className={`
       button
       ${size === 'small' ? 'button_type_basic-small' : 'button_type_basic-big'}
+      ${active && 'button_active'}
       `}
       onClick={onButtonClick}
       type={buttonType}
+      disabled={!active}
     >
       {text}
     </button>

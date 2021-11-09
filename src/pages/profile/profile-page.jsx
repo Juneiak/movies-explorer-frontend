@@ -2,26 +2,38 @@ import React from 'react';
 import { Header } from '../../components/index';
 import './profile-page.css';
 import { CurrentUserContext } from '../../contexts';
+import { useFormWithValidation } from '../../utils/custom-hooks/use-form';
 
 const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
-
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [updateError, setUpdateError] = React.useState('');
   const { currentUser } = React.useContext(CurrentUserContext);
   
-  const handleNameChange = (evt) => setName(evt.target.value);
-  const handleEmailChange = (evt) => setEmail(evt.target.value);
+  const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
+
+  const resetProfileForm = () => resetForm({
+    profileName: currentUser.name,
+    profileEmail: currentUser.email,
+  });
 
   React.useEffect(() => {
-    setEmail(currentUser.email);
-    setName(currentUser.name);
+    resetProfileForm();
   }, [currentUser]);
 
   const handleUpdateUserData = () => {
-    if (currentUser.email !== email || currentUser.name !== name) {
-      onUpdateButtonClick(name, email);
+    if (currentUser.email !== values.profileEmail || currentUser.name !== values.profileName) {
+      onUpdateButtonClick(values.profileName, values.profileEmail)
+        .catch((err) => {
+          resetProfileForm();
+          setUpdateError(err);
+        } )
     }
   };
+
+  const handleInputChange = (evt) => {
+    handleChange(evt);
+    setUpdateError('');
+  };
+
   return (
     <>
       <Header />
@@ -34,30 +46,52 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
                 <span className='profile-page__var'>Имя</span>
                 <input
                   type='text'
-                  onChange={handleNameChange}
-                  value={name}
+                  onChange={handleInputChange}
+                  value={values.profileName}
                   required
                   minLength='2'
                   maxLength='30'
                   className='profile-page__value'
+                  name='profileName'
                 />
-                <span className='profile-page__input-error'>dddddddddd ddddddddddddd dddddddddddd ddddddd dddd ddddddd dddddddddddd dddddddddd dddddddddcc cccccccc ccccc</span>
+                <span className='profile-page__input-error'>{errors.profileName}</span>
               </div>
               <div className='profile-page__value-container'>
                 <span className='profile-page__var'>E-mail</span>
                 <input
                 type='email'
-                onChange={handleEmailChange}
-                value={email}
+                onChange={handleInputChange}
+                value={values.profileEmail}
                 required
                 className='profile-page__value'
+                name='profileEmail'
                 />
-                <span className='profile-page__input-error'>dd</span>
+                <span className='profile-page__input-error'>{errors.profileEmail}</span>
               </div>
             </div>
             <div className='profile-page__buttons'>
-              <button type='button' onClick={handleUpdateUserData} className='app__link app__link-animation profile-page__button profile-page__button_edit'>Редактировать</button>
-              <button type='button' onClick={onSignoutButtonClick} className='app__link app__link-animation profile-page__button profile-page__button_signout'>Выйти из аккаунта</button>
+              <p className='profile-page__update-error'>{updateError}</p>
+              <button
+                type='button'
+                onClick={handleUpdateUserData}
+                disabled={!isValid}
+                className={`
+                  app__link
+                  app__link-animation
+                  profile-page__button
+                  profile-page__button_edit
+                  ${!isValid && 'profile-page__button_inactive'}
+                `}
+              >Редактировать</button>
+              <button
+                type='button'
+                onClick={onSignoutButtonClick}
+                className='
+                  app__link
+                  app__link-animation
+                  profile-page__button
+                  profile-page__button_signout
+                '>Выйти из аккаунта</button>
             </div>
           </form>
         </section>

@@ -39,7 +39,7 @@ const Header = () => {
             && (
             <div className='header__auth'>
               <Link to='/signup' className='app__link-animation header__link'>Регестрация</Link>
-              <Button onButtonClick={onSigninClick} buttonType='button' size='small' text='Войти' />
+              <Button active onButtonClick={onSigninClick} buttonType='button' size='small' text='Войти' />
             </div>
             )}
         </div>

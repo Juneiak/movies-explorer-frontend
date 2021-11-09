@@ -11,7 +11,6 @@ const signIn = (email, password) => (
   })
   .then(checkStatus)
   .then((res) => {
-    console.log(res.message);
     return res;
   })
 );
@@ -27,7 +26,6 @@ const signUp = (name, email, password) => (
   })
   .then(checkStatus)
   .then((res) => {
-    console.log(res.message);
     return res;
   })
 );
@@ -39,7 +37,6 @@ const signOut = () => (
   })
   .then(checkStatus)
   .then((res) => {
-    console.log(res.message);
     return res;
   })
 );

@@ -3,15 +3,22 @@ import {
   InputContainer, SimpleWindowTitle, Button, QuestionLink,
 } from '../../components/index';
 import './login-page.css';
+import { useFormWithValidation } from '../../utils/custom-hooks/use-form';
 
 const LoginPage = ({ onSigninButtonClick }) => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [loginError, setLoginError] = React.useState('');
+  const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
 
-  const handleEmailChange = (evt) => setEmail(evt.target.value);
-  const handlePasswordChange = (evt) => setPassword(evt.target.value);
+  const handleSignin = () => {
+    onSigninButtonClick(values.signinEmail, values.signinPassword)
+      .then(() => resetForm())
+      .catch((err) => setLoginError(err))
+  };
 
-  const handleSignin = () => onSigninButtonClick(email, password);
+  const handleInputChange = (evt) => {
+    handleChange(evt);
+    setLoginError('');
+  };
 
   return (
     <main className='login-page'>
@@ -20,22 +27,29 @@ const LoginPage = ({ onSigninButtonClick }) => {
         <form className='login-page__form'>
           <fieldset className='login-page__inputs'>
             <InputContainer
-              inputName='E-mail'
-              inputValue={email}
+              inputTitle='E-mail'
+              inputValue={values.signinEmail}
               inputType='email'
               isRequired
-              inputOnChange={handleEmailChange}
+              inputName='signinEmail'
+              inputOnChange={handleInputChange}
+              inputErrors={errors.signinEmail}
             />
             <InputContainer
-              inputName='Пароль'
-              inputValue={password}
+              inputTitle='Пароль'
+              inputValue={values.signinPassword}
               inputType='password'
               inputPlaceholder='Ваш пароль'
               isRequired
-              inputOnChange={handlePasswordChange}
+              inputName='signinPassword'
+              inputOnChange={handleInputChange}
+              inputErrors={errors.signinPassword}
             />
           </fieldset>
-          <Button onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
+          <div className='login-page__button-container'>
+            <p className='login-page__error'>{loginError}</p>
+            <Button active={isValid} onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
+          </div>
         </form>
         <QuestionLink question='Ещё не зарегистрированы?' linkText='Регистрация' linkTo='/signup' />
       </section>

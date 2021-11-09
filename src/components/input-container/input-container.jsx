@@ -3,16 +3,20 @@ import './input-container.css';
 import PropTypes from 'prop-types';
 
 const InputContainer = ({
-  inputName = 'emptyName',
+  inputTitle = 'emptyName',
   inputValue = '',
   inputType = 'text',
   inputPlaceholder = '',
   isRequired = false,
+  inputName,
+  inputErrors,
+  maxLength = '',
+  minLength = '',
   inputOnChange = () => {},
 }) => {
   return (
     <div className='input-container'>
-      <span className='input-container__name'>{inputName}</span>
+      <span className='input-container__name'>{inputTitle}</span>
       <input
         className='input-container__input' // input-container__input_error
         value={inputValue}
@@ -20,8 +24,11 @@ const InputContainer = ({
         placeholder={inputPlaceholder}
         required={isRequired}
         onChange={inputOnChange}
+        name={inputName}
+        minLength={String(minLength)}
+        maxLength={String(maxLength)}
       />
-      <span className='input-container__error'>errr</span>
+      {inputErrors && <span className='input-container__error'>{inputErrors}</span>}
     </div>
   );
 };

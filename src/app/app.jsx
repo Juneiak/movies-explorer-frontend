@@ -116,45 +116,67 @@ function App() {
       })
   };
 
-  const signinHandler = (email, password) => {
+  const signinHandler = (email, password) => (
     signIn(email, password)
       .then((res) => {
         console.log(res.message);
         getUserDataHandler()
-          .then(() => history.push('/movies'))
+          .then(() => {
+            history.push('/movies')
+            return Promise.resolve('loggedIn')
+          })
       })
-      .catch((err) => console.error(`signIn error in app - ${err}`))
-  };
+      .catch((err) => {
+        console.error(`signIn error in app - ${err}`);
+        return Promise.reject('Во время авторизации произошла ошибка. Подождите немного и попробуйте ещё раз')
+      })
+  );
 
-  const signupHandler = (name, email, password) => {
+  const signupHandler = (name, email, password) => (
     signUp(name, email, password)
       .then((res) => {
         console.log(res.message);
         getUserDataHandler()
-        .then(() => history.push('/movies'))
+        .then(() => {
+          history.push('/movies')
+          return Promise.resolve('registered')
+        })
       })
-      .catch((err) => console.error(`signUp error in app - ${err}`))
-  };
+      .catch((err) => {
+        console.error(`signUp error in app - ${err}`);
+        return Promise.reject('Во время регистрации произошла ошибка. Подождите немного и попробуйте ещё раз')
+
+      })
+  );
 
   const signoutHandler = () => {
     setIsAuthLoaded(false);
-    signOut()
+    return signOut()
     .then((res) => {
       console.log(res.message);
       localStorage.removeItem('user');
       setLoadedUser({});
       history.push('/');
+      return Promise.resolve('registered')
     })
-    .catch((err) => console.error(`signOut error in app - ${err}`)) 
+    .catch((err) => {
+      console.error(`signOut error in app - ${err}`);
+      return Promise.reject('Не удалось выйти из аккаунта. Подождите немного и попробуйте ещё раз')
+    }) 
   };
 
-  const updateUserDataHandler = (name, email) => {
+  const updateUserDataHandler = (name, email) => (
     updateUserData(email, name)
       .then((updatedCurrentUserData) => {
+        setExpiringItemToLS('user', updatedCurrentUserData, 1000 * 60 * 5);
         setCurrentUser(updatedCurrentUserData);
+        return Promise.resolve(updatedCurrentUserData);
       })
-      .catch((err) => console.error(`current user data update error in app - ${err}`));
-  };
+      .catch((err) => {
+        console.error(`current user data update error in app - ${err}`);
+        return Promise.reject('Не удалось обновить данные аккаунта. Подождите немного и попробуйте ещё раз');
+      })
+  );
 
   React.useEffect(() => {
     getUserDataHandler();

@@ -10,7 +10,6 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
   const [filteredMovies, setFilterdMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState('');
 
   const SearchHandler = (searchText, isShortFilm) => {
     setIsLoading(true);
@@ -21,7 +20,6 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setErrorMessage(err.message);
         setIsLoading(false);
         setIsError(true);
       })
@@ -36,10 +34,10 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
   return (
     <>
       <Header />
-      <main className='movies-page'>
+      <main className='saved-movies-page'>
         <SearchForm onSearchButtonClick={SearchHandler} isSearched={!!filteredMovies.length} />
         {isError 
-        ? <h2 className='movies-page__get-movies-error'>{errorMessage}</h2>
+        ? <h2 className='saved-movies-page__get-movies-error'>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
         : (isLoading 
         ? <Preloader />
         : 
