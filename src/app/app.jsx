@@ -100,17 +100,20 @@ function App() {
     setIsAuthLoaded(false);
     const savedUser = getExpiringItemFromLS('user');
     if (savedUser) {
+      setIsAuthLoaded(true);
       setLoadedUser(savedUser);
       return Promise.resolve(savedUser);
     };
     return getUserData()
       .then((currentUserData) => {
+        setIsAuthLoaded(true);
         setLoadedUser(currentUserData);
         setExpiringItemToLS('user', currentUserData, 1000 * 60 * 5);
         return currentUserData;
       })
       .catch((err) => {
         console.error(`get current user data error in app - ${err}`);
+        setIsAuthLoaded(true);
         setLoadedUser({});
         return Promise.reject(err);
       })
@@ -153,12 +156,14 @@ function App() {
     return signOut()
     .then((res) => {
       console.log(res.message);
+      setIsAuthLoaded(true);
       localStorage.removeItem('user');
       setLoadedUser({});
       history.push('/');
       return Promise.resolve('registered')
     })
     .catch((err) => {
+      setIsAuthLoaded(true);
       console.error(`signOut error in app - ${err}`);
       return Promise.reject('Не удалось выйти из аккаунта. Подождите немного и попробуйте ещё раз')
     }) 
