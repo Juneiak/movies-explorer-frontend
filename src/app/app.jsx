@@ -136,9 +136,8 @@ function App() {
     signUp(name, email, password)
       .then((res) => {
         console.log(res.message);
-        getUserDataHandler()
+        return signinHandler(email, password)
         .then(() => {
-          history.push('/movies')
           return Promise.resolve('registered')
         })
       })
@@ -179,9 +178,11 @@ function App() {
   );
 
   React.useEffect(() => {
-    getUserDataHandler();
-    getAllMoviesHandler();
-    getUserMoviesHandler();
+    getUserDataHandler()
+      .then(() => {
+        getAllMoviesHandler();
+        getUserMoviesHandler();
+      })
   }, []);
 
   return (
