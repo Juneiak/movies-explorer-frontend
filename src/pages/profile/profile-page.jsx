@@ -6,8 +6,8 @@ import { useFormWithValidation } from '../../utils/custom-hooks/use-form';
 
 const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
   const [updateError, setUpdateError] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
   const { currentUser } = React.useContext(CurrentUserContext);
-  
   const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
 
   const resetProfileForm = () => resetForm({
@@ -21,10 +21,13 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
 
   const handleUpdateUserData = () => {
     if (currentUser.email !== values.profileEmail || currentUser.name !== values.profileName) {
+      setIsLoading(true);
       onUpdateButtonClick(values.profileName, values.profileEmail)
+      .then(() => setIsLoading(false))
         .catch((err) => {
           resetProfileForm();
           setUpdateError(err);
+          setIsLoading(false)
         } )
     }
   };
@@ -53,6 +56,7 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
                   maxLength='30'
                   className='profile-page__value'
                   name='profileName'
+                  disabled={isLoading}
                 />
                 <span className='profile-page__input-error'>{errors.profileName}</span>
               </div>
@@ -65,6 +69,7 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
                 required
                 className='profile-page__value'
                 name='profileEmail'
+                disabled={isLoading}
                 />
                 <span className='profile-page__input-error'>{errors.profileEmail}</span>
               </div>
@@ -74,7 +79,7 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
               <button
                 type='button'
                 onClick={handleUpdateUserData}
-                disabled={!isValid}
+                disabled={!isValid || isLoading}
                 className={`
                   app__link
                   app__link-animation

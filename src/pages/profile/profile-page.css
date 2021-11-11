@@ -117,6 +117,10 @@
   margin: 0 0 16px;
 } 
 
+.profile-page__button_edit:disabled {
+  color:#FF4062;
+}
+
 .profile-page__button_signout {
   color:#FF4062;
   font-weight: 500;

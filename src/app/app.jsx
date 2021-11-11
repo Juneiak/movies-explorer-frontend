@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import {
   MainPage,
   MoviesPage,
@@ -158,6 +158,7 @@ function App() {
       console.log(res.message);
       setIsAuthLoaded(true);
       localStorage.removeItem('user');
+      localStorage.removeItem('filteredMovies');
       setLoadedUser({});
       history.push('/');
       return Promise.resolve('registered')
@@ -202,30 +203,33 @@ function App() {
               </Route>
 
               <ProtectedRoute
+              exact={true}
               path='/movies'
               component={MoviesPage}
               getAllMoviesHandler={getAllMoviesHandler}
               />
 
               <ProtectedRoute
+              exact={true}
               path='/saved-movies'
               component={SavedMoviesPage}
               getUserMoviesHandler={getUserMoviesHandler}
               />
               
               <ProtectedRoute
+                exact={true}
                 path='/profile'
                 onSignoutButtonClick={signoutHandler}
                 onUpdateButtonClick={updateUserDataHandler}
                 component={ProfilePage}
               />
 
-              <Route path='/signin'>
-                <LoginPage onSigninButtonClick={signinHandler} />
+              <Route exact path='/signin'>
+                {currentUser.email ? <Redirect to='/' /> : <LoginPage onSigninButtonClick={signinHandler}/> }
               </Route>
 
-              <Route path='/signup'>
-                <RegisterPage  onSignupButtonClick={signupHandler} />
+              <Route exact path='/signup'>
+                {currentUser.email ? <Redirect to='/' /> : <RegisterPage  onSignupButtonClick={signupHandler} />}
               </Route>
 
               <Route path='*'>

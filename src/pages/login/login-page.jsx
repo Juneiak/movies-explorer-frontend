@@ -7,18 +7,28 @@ import { useFormWithValidation } from '../../utils/custom-hooks/use-form';
 
 const LoginPage = ({ onSigninButtonClick }) => {
   const [loginError, setLoginError] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
   const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
 
   const handleSignin = () => {
+    setIsLoading(true)
     onSigninButtonClick(values.signinEmail, values.signinPassword)
-      .then(() => resetForm())
-      .catch((err) => setLoginError(err))
+      .then(() => {
+        resetForm()
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setLoginError(err)
+        setIsLoading(false);
+      })
   };
 
   const handleInputChange = (evt) => {
     handleChange(evt);
     setLoginError('');
   };
+
+  
 
   return (
     <main className='login-page'>
@@ -34,6 +44,7 @@ const LoginPage = ({ onSigninButtonClick }) => {
               inputName='signinEmail'
               inputOnChange={handleInputChange}
               inputErrors={errors.signinEmail}
+              isInputActive={!isLoading}
             />
             <InputContainer
               inputTitle='Пароль'
@@ -44,11 +55,12 @@ const LoginPage = ({ onSigninButtonClick }) => {
               inputName='signinPassword'
               inputOnChange={handleInputChange}
               inputErrors={errors.signinPassword}
+              isInputActive={!isLoading}
             />
           </fieldset>
           <div className='login-page__button-container'>
             <p className='login-page__error'>{loginError}</p>
-            <Button active={isValid} onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
+            <Button active={isValid || !isLoading} onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
           </div>
         </form>
         <QuestionLink question='Ещё не зарегистрированы?' linkText='Регистрация' linkTo='/signup' />

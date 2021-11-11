@@ -3,10 +3,10 @@ import { Route, Redirect } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/index';
 import { Preloader } from '../index';
 
-const ProtectedRoute = ({ component: Component, path, ...props }) => {
+const ProtectedRoute = ({ component: Component, path, exact, ...props }) => {
   const { isAuthLoaded, currentUser } = React.useContext(CurrentUserContext);
   return (
-    <Route path={path}>
+    <Route exact={exact} path={path}>
       { !isAuthLoaded
       ? < Preloader />
       : currentUser.email

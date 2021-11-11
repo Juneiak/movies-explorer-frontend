@@ -7,12 +7,20 @@ import { useFormWithValidation } from '../../utils/custom-hooks/use-form';
 
 const RegisterPage = ({ onSignupButtonClick }) => {
   const [registerError, setRegisterError] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
   const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
 
   const handleSignup = () => {
+    setIsLoading(true);
     onSignupButtonClick(values.signupName, values.signupEmail, values.signupPassword)
-      .then(() => resetForm())
-      .catch((err) => setRegisterError(err))
+      .then(() => {
+        resetForm();
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setRegisterError(err);
+        setIsLoading(false);
+      })
   };
 
   const handleInputChange = (evt) => {
@@ -36,6 +44,7 @@ const RegisterPage = ({ onSignupButtonClick }) => {
               inputErrors={errors.signupName}
               maxLength={30}
               minLength={2}
+              isInputActive={!isLoading}
             />
             <InputContainer
               inputTitle='E-mail'
@@ -45,6 +54,7 @@ const RegisterPage = ({ onSignupButtonClick }) => {
               inputOnChange={handleInputChange}
               inputName='signupEmail'
               inputErrors={errors.signupEmail}
+              isInputActive={!isLoading}
             />
             <InputContainer
               inputTitle='Пароль'
@@ -55,11 +65,12 @@ const RegisterPage = ({ onSignupButtonClick }) => {
               inputOnChange={handleInputChange}
               inputName='signupPassword'
               inputErrors={errors.signupPassword}
+              isInputActive={!isLoading}
             />
           </fieldset>
           <div className='register-page__button-container'>
             <p className='register-page__error'>{registerError}</p>
-            <Button active={isValid} onButtonClick={handleSignup} buttonType='button' size='big' text='Зарегистрироваться' />
+            <Button active={isValid || !isLoading} onButtonClick={handleSignup} buttonType='button' size='big' text='Зарегистрироваться' />
           </div>
         </form>
         <QuestionLink question='Уже зарегистрированы?' linkText='Войти' linkTo='/signin' />

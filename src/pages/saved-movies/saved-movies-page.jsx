@@ -39,14 +39,17 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
         {isError 
         ? <h2 className='saved-movies-page__get-movies-error'>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
         : (isLoading 
-        ? <Preloader />
-        : 
-        <MoviesCardList buttonStatus={false}>
-          {filteredMovies.map((item, index) => (
-            <MoviesCard deleteCardHandler={deleteCardHandler} cardData={item} key={item._id} isSavedMovieCard/>
-          ))}
-        </MoviesCardList>
-        )
+          ? <Preloader />
+          : (filteredMovies.length < 1
+            ? <h2 className='saved-movies-page__nothing-found'>Ничего не найдено</h2>
+            : 
+            <MoviesCardList buttonStatus={false}>
+              {filteredMovies.map((item) => (
+                <MoviesCard deleteCardHandler={deleteCardHandler} cardData={item} key={item.movieId} isSavedMovieCard/>
+              ))}
+            </MoviesCardList>
+            )
+          )
         }
       </main>
       <Footer />

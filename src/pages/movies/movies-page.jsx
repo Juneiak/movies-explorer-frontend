@@ -20,6 +20,7 @@ const MoviesPage = ({ getAllMoviesHandler }) => {
     getAllMoviesHandler()
       .then((allMovies) => {
         const filteredMovies = toFilter(allMovies, {searchText, isShortFilm});
+        localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies))
         setFilterdMovies(filteredMovies);
         if (filteredMovies.length <= 5) setIsMoreButtonActive(false);
         else setIsMoreButtonActive(true);
@@ -39,6 +40,15 @@ const MoviesPage = ({ getAllMoviesHandler }) => {
     if (numberOfElements >= filteredMovies.length) setIsMoreButtonActive(false);
   }, [numberOfElements]);
 
+  React.useEffect(() => {
+    const savedFilteredMovies = JSON.parse(localStorage.getItem('filteredMovies'));
+    if (savedFilteredMovies) {
+      setFilterdMovies(savedFilteredMovies);
+      if (savedFilteredMovies.length <= 5) setIsMoreButtonActive(false)
+      else setIsMoreButtonActive(true)
+    } 
+  }, []);
+
   return (
     <>
       <Header />
@@ -47,14 +57,17 @@ const MoviesPage = ({ getAllMoviesHandler }) => {
         {isError 
         ? <h2 className='movies-page__get-movies-error'>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
         : (isLoading 
-        ? <Preloader />
-        : 
-        <MoviesCardList onMoreButtonClick={moreHandler}  buttonStatus={isMoreButtonActive}>
-          {filteredMovies.slice(0, numberOfElements).map((item, index) => (
-            <MoviesCard cardData={item} key={index} />
-          ))}
-        </MoviesCardList>
-        )
+          ? <Preloader />
+          : (filteredMovies.length < 1
+            ? <h2 className='movies-page__nothing-found'>Ничего не найдено</h2>
+            : 
+            <MoviesCardList onMoreButtonClick={moreHandler}  buttonStatus={isMoreButtonActive}>
+              {filteredMovies.slice(0, numberOfElements).map((item) => (
+                <MoviesCard cardData={item} key={item.movieId} />
+              ))}
+            </MoviesCardList>
+            )
+          )
         }
       </main>
       <Footer />

@@ -12,6 +12,7 @@ const InputContainer = ({
   inputErrors,
   maxLength = '',
   minLength = '',
+  isInputActive = true,
   inputOnChange = () => {},
 }) => {
   return (
@@ -27,6 +28,7 @@ const InputContainer = ({
         name={inputName}
         minLength={String(minLength)}
         maxLength={String(maxLength)}
+        disabled={!isInputActive}
       />
       {inputErrors && <span className='input-container__error'>{inputErrors}</span>}
     </div>
