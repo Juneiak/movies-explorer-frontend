@@ -25,6 +25,10 @@
   margin: 0 0 6px;
 }
 
+.input-container__input:disabled {
+  background-color: #FF4062;
+}
+
 .input-container__input_error {
   color: #FF4062;
 }

@@ -62,6 +62,7 @@ const RegisterPage = ({ onSignupButtonClick }) => {
               inputType='password'
               inputPlaceholder='Ваш пароль'
               isRequired
+              minLength={6}
               inputOnChange={handleInputChange}
               inputName='signupPassword'
               inputErrors={errors.signupPassword}
@@ -70,7 +71,7 @@ const RegisterPage = ({ onSignupButtonClick }) => {
           </fieldset>
           <div className='register-page__button-container'>
             <p className='register-page__error'>{registerError}</p>
-            <Button active={isValid || !isLoading} onButtonClick={handleSignup} buttonType='button' size='big' text='Зарегистрироваться' />
+            <Button active={isValid && !isLoading} onButtonClick={handleSignup} buttonType='button' size='big' text='Зарегистрироваться' />
           </div>
         </form>
         <QuestionLink question='Уже зарегистрированы?' linkText='Войти' linkTo='/signin' />

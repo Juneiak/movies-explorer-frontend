@@ -28,8 +28,6 @@ const LoginPage = ({ onSigninButtonClick }) => {
     setLoginError('');
   };
 
-  
-
   return (
     <main className='login-page'>
       <section className='login-page__content'>
@@ -52,6 +50,7 @@ const LoginPage = ({ onSigninButtonClick }) => {
               inputType='password'
               inputPlaceholder='Ваш пароль'
               isRequired
+              minLength={6}
               inputName='signinPassword'
               inputOnChange={handleInputChange}
               inputErrors={errors.signinPassword}
@@ -60,7 +59,7 @@ const LoginPage = ({ onSigninButtonClick }) => {
           </fieldset>
           <div className='login-page__button-container'>
             <p className='login-page__error'>{loginError}</p>
-            <Button active={isValid || !isLoading} onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
+            <Button active={isValid && !isLoading} onButtonClick={handleSignin} buttonType='button' size='big' text='Войти' />
           </div>
         </form>
         <QuestionLink question='Ещё не зарегистрированы?' linkText='Регистрация' linkTo='/signup' />

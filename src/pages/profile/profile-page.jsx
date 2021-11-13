@@ -42,7 +42,7 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
       <Header />
       <main className='profile-page'>
         <section className='profile-page__content'>
-          <h1 className='profile-page__title'>Привет, Виталий!</h1>
+          <h1 className='profile-page__title'>{`Привет, ${currentUser.name}!`}</h1>
           <form className='profile-page__form'>
             <div className='profile-page__values'>
               <div className='profile-page__value-container'>

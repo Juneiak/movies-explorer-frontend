@@ -19,7 +19,7 @@ const InputContainer = ({
     <div className='input-container'>
       <span className='input-container__name'>{inputTitle}</span>
       <input
-        className='input-container__input' // input-container__input_error
+        className='input-container__input'
         value={inputValue}
         type={inputType}
         placeholder={inputPlaceholder}

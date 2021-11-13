@@ -8,6 +8,7 @@ import { toFilter } from '../../utils/app-utils/app-utils';
 const SavedMoviesPage = ({ getUserMoviesHandler }) => {
 
   const [filteredMovies, setFilterdMovies] = React.useState([]);
+  const [nothingFound, setNothingFound] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
@@ -17,6 +18,8 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
       .then((allSavedMovies) => {
         const filteredMovies = toFilter(allSavedMovies, {searchText, isShortFilm});
         setFilterdMovies(filteredMovies);
+        if (filteredMovies.length < 1) setNothingFound(true);
+        else setNothingFound(false)
         setIsLoading(false);
       })
       .catch((err) => {
@@ -28,7 +31,17 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
   const deleteCardHandler = (movieId) => setFilterdMovies(filteredMovies.filter((movie) => movie.movieId !== movieId))
 
   React.useEffect(() => {
-    SearchHandler('', false)
+    setIsLoading(true);
+    getUserMoviesHandler()
+      .then((allSavedMovies) => {
+        const filteredMovies = toFilter(allSavedMovies, { searchText: '', isShortFilm: false });
+        setFilterdMovies(filteredMovies);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setIsError(true);
+      })
   }, []);
 
   return (
@@ -40,7 +53,7 @@ const SavedMoviesPage = ({ getUserMoviesHandler }) => {
         ? <h2 className='saved-movies-page__get-movies-error'>Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</h2>
         : (isLoading 
           ? <Preloader />
-          : (filteredMovies.length < 1
+          : (nothingFound
             ? <h2 className='saved-movies-page__nothing-found'>Ничего не найдено</h2>
             : 
             <MoviesCardList buttonStatus={false}>
