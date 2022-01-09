@@ -2,10 +2,23 @@ import React from 'react';
 import './search-from.css';
 import finderImage from '../../images/search-icon.svg';
 import FilterCheckBox from '../filter-check-box/filter-check-box';
-import useWindowDimensions from '../../utils/customHooks/use-window-dimensions';
+import useWindowDimensions from '../../utils/custom-hooks/use-window-dimensions';
 
-const SearchForm = () => {
+const SearchForm = ({ onSearchButtonClick, isSearched }) => {
   const { width } = useWindowDimensions();
+  const [ searchText, setSearchText ] = React.useState('');
+  const [ isShortFilm, setIsShortFilm ] = React.useState(false);
+
+  const handleTextChange = (evt) => setSearchText(evt.target.value);
+  
+  const handleSearch = () => {
+    onSearchButtonClick(searchText, isShortFilm);
+  }
+
+  const shortFilmSearchHandler = () => {
+    setIsShortFilm(!isShortFilm);
+    if (isSearched) onSearchButtonClick(searchText, !isShortFilm);
+  }
   return (
     <section className='search-form'>
       <div className='search-form__container'>
@@ -13,15 +26,23 @@ const SearchForm = () => {
           <fieldset className='search-form__text-input-container'>
             <img className='search-form__lupa' src={finderImage} alt='лупа для поиска' />
             <div className='search-form__search-input'>
-              <input className='search-form__text-input' type='text' minLength='1' required placeholder='Фильм' />
+              <input
+                onChange={handleTextChange}
+                className='search-form__text-input'
+                value={searchText}
+                type='text'
+                minLength='1'
+                required
+                placeholder='Фильм'
+              />
               <span className='search-form__error' />
             </div>
-            <button className='search-form__search-button'>Найти</button>
+            <button type='button' onClick={handleSearch} className='search-form__search-button'>Найти</button>
           </fieldset>
           {width > 600
             && (
             <div className='search-form__checkbox-container'>
-              <FilterCheckBox />
+              <FilterCheckBox isActive={isShortFilm} toggleFilter={shortFilmSearchHandler}/>
               <span className='search-form__checkbox-title'>Короткометражки</span>
             </div>
             )}
@@ -29,7 +50,7 @@ const SearchForm = () => {
         {width < 600
           && (
           <div className='search-form__checkbox-container'>
-            <FilterCheckBox />
+            <FilterCheckBox isActive={isShortFilm} toggleFilter={shortFilmSearchHandler}/>
             <span className='search-form__checkbox-title'>Короткометражки</span>
           </div>
           )}

@@ -5,7 +5,7 @@
   align-items: center;
   font-weight: 500;
   font-style: normal;
-  background: #000000;
+  background: #999999;
   border-radius: 3px;
   color: #FFFFFF;
   transition: linear opacity 0.3s;
@@ -13,7 +13,11 @@
   border: none;
 }
 
-.button:hover {
+.button_active {
+  background: #000000;
+}
+
+.button_active:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -44,7 +48,4 @@
     line-height: 15px;
   }
   
-  .button_type_secondary {
-    padding: 11px 20px 9px;
-  }
 }

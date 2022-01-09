@@ -33,6 +33,20 @@
   width: 100%;
 }
 
+.login-page__button-container {
+  width: 100%;
+}
+
+.login-page__error {
+  margin: 0 0 10px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #FF4062;
+  width:100%;
+  text-align: center;
+}
+
 @media screen and (max-width: 780px) {
   .login-page {
     padding: 232px 0;
@@ -47,5 +61,10 @@
   }
   .login-page {
     padding: 56px 0 30px;
+  }
+
+  .login-page__error {
+    font-size: 14px;
+    line-height: 16px;
   }
 }

@@ -4,3 +4,16 @@
   flex-direction: column;
   align-items: center;
 }
+
+.saved-movies-page__get-movies-error {
+  color:#FF4062;
+  width: 80%;
+  font-size: 23px;
+  text-align: center;
+}
+
+.saved-movies-page__nothing-found {
+  width: 80%;
+  font-size: 23px;
+  text-align: center;
+}

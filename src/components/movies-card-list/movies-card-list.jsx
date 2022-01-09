@@ -1,14 +1,15 @@
 import React from 'react';
 import './movies-card-list.css';
 
-const MoviesCardList = ({ children }) => {
+const MoviesCardList = ({ children, onMoreButtonClick=function(){}, buttonStatus }) => {
+
   return (
     <section className='movies-card-list'>
       <div className='movies-card-list__container'>
         <ul className='movies-card-list__list'>
           { children }
         </ul>
-        <button className='movies-card-list__more-button'>Ещё</button>
+        {buttonStatus && <button onClick={onMoreButtonClick} type='button' className='movies-card-list__more-button'>Ещё</button>}
       </div>
     </section>
   );
