@@ -1,5 +1,5 @@
 # учебный проект "movies-explorer-frontend"
-Одностраничное приложение Stellar Burger разработано в рамках курса "веб-разработка"
+Одностраничное приложение Stellar Burger разработано в рамках курса "веб-разработка". 
 site - 'http://juneiak.movieproject.nomoredomains.rocks'  
 
 ## Технологии:
