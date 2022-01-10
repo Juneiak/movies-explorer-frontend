@@ -1,5 +1,15 @@
-# movies-explorer-frontend
+# учебный проект "movies-explorer-frontend"
+Одностраничное приложение Stellar Burger разработано в рамках курса "веб-разработка"
+site - 'http://juneiak.movieproject.nomoredomains.rocks'  
 
-site - http://juneiak.movieproject.nomoredomains.rocks
+## Технологии:
++ js
++ React
++ React router
++ Методология БЭМ
 
-Публичный IPv4 - 62.84.116.179
+## Функциональность:
+
++ авторизации и регистрации пользователей 
++ навигация по приложению
++ отображение информации на всплывающих окнах
