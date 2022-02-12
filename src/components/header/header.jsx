@@ -5,7 +5,7 @@ import Account from '../account/account';
 import Button from '../button/button';
 import './header.css';
 import useWindowDimensions from '../../utils/custom-hooks/use-window-dimensions';
-import {SlideMenuContext, CurrentUserContext} from '../../contexts/index';
+import { PopupsContext, CurrentUserContext } from '../../contexts/index';
 
 const Header = () => {
   const { currentUser } = React.useContext(CurrentUserContext);
@@ -13,7 +13,7 @@ const Header = () => {
   const { width } = useWindowDimensions();
   const { isExact: mainPageMatch } = useRouteMatch('/');
   const history = useHistory();
-  const setIsSlideMenuOpen = React.useContext(SlideMenuContext);
+  const { setIsSlideMenuOpen } = React.useContext(PopupsContext);
 
   const burgerClickHandler = () => {
     setIsSlideMenuOpen(true);

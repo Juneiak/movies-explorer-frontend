@@ -1,7 +1,7 @@
 import React from 'react';
 import './movies-card.css';
 import PropTypes from 'prop-types';
-import { CardActionContext } from '../../contexts/index';
+import { CardActionContext, CurrentUserContext, PopupsContext } from '../../contexts/index';
 
 const MoviesCard = ({
   deleteCardHandler=function(){},
@@ -25,7 +25,8 @@ const MoviesCard = ({
   const [isLiked, setIsLiked] = React.useState(false);
 
   const { addMovieHandler, deleteMovieHandler, likedMoviesIdList } = React.useContext(CardActionContext);
-  
+  const { currentUser } = React.useContext(CurrentUserContext)
+  const { setIsNotLoggedInPopupOpen } = React.useContext(PopupsContext);
 
   const handleRemove = () => {
     deleteMovieHandler(movieId)
@@ -47,6 +48,10 @@ const MoviesCard = ({
   });
 
   const handleLikeClick = () => {
+    if (!currentUser.email) {
+      setIsNotLoggedInPopupOpen(true)
+      return
+    }
     if (isLiked) {
       deleteMovieHandler(movieId)
         .then(() => setIsLiked(false))

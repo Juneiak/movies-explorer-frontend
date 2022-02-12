@@ -1,9 +1,9 @@
 import CurrentUserContext from './current-user-context';
-import SlideMenuContext from './slide-menu-context';
+import PopupsContext from './popups-context';
 import CardActionContext from './card-action-context';
 
 export {
   CurrentUserContext,
-  SlideMenuContext,
+  PopupsContext,
   CardActionContext,
 }

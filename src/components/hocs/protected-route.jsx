@@ -5,6 +5,7 @@ import { Preloader } from '../index';
 
 const ProtectedRoute = ({ component: Component, path, exact, ...props }) => {
   const { isAuthLoaded, currentUser } = React.useContext(CurrentUserContext);
+  
   return (
     <Route exact={exact} path={path}>
       { !isAuthLoaded

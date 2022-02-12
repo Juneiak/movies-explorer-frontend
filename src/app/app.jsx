@@ -20,7 +20,7 @@ import {
   deleteMovieFromUserList,
 } from '../utils/api/main-api';
 import {
-  SlideMenuContext,
+  PopupsContext,
   CurrentUserContext,
   CardActionContext
 } from '../contexts/index';
@@ -29,15 +29,17 @@ import {
   getExpiringItemFromLS 
 } from '../utils/custom-local-storge/expirig-local-storge';
 import { getMoviesData } from '../utils/api/movies-api';
-import SlideMenu from '../components/slide-menu/slide-menu';
 import { normalizeMoviesApiData } from '../utils/app-utils/app-utils';
 import './app.css';
 import ProtectedRoute from '../components/hocs/protected-route';
+import { SlideMenu, NotLoggedInPopup } from '../components/index';
 
 function App() {
 
   const [isAuthLoaded, setIsAuthLoaded] = React.useState(false);
   const [isSlideMenuOpen, setIsSlideMenuOpen] = React.useState(false);
+  const [isNotLoggedInPopupOpen, setIsNotLoggedInPopupOpen] = React.useState(false);
+
   const [currentUser, setCurrentUser] = React.useState({});
   
   const [likedMoviesIdList, setLikedMoviesIdList] = React.useState([]);
@@ -193,21 +195,14 @@ function App() {
 
   return (
     <div className='app'>
-      <CurrentUserContext.Provider value={{ isAuthLoaded, currentUser }}>
-        <SlideMenuContext.Provider value={setIsSlideMenuOpen}>
-          <CardActionContext.Provider value={{ addMovieHandler, deleteMovieHandler, likedMoviesIdList }} >
+      <CurrentUserContext.Provider value={{isAuthLoaded, currentUser}}>
+        <PopupsContext.Provider value={{setIsSlideMenuOpen, setIsNotLoggedInPopupOpen}}>
+          <CardActionContext.Provider value={{addMovieHandler, deleteMovieHandler, likedMoviesIdList}} >
             <Switch>
 
               <Route exact path='/'>
-                <MainPage />
+                <MoviesPage getAllMoviesHandler={getAllMoviesHandler} />
               </Route>
-
-              <ProtectedRoute
-              exact={true}
-              path='/movies'
-              component={MoviesPage}
-              getAllMoviesHandler={getAllMoviesHandler}
-              />
 
               <ProtectedRoute
               exact={true}
@@ -240,8 +235,12 @@ function App() {
 
             {isSlideMenuOpen
             && <SlideMenu isOpen={isSlideMenuOpen} />}
+
+            {isNotLoggedInPopupOpen 
+            && <NotLoggedInPopup />}
+
           </CardActionContext.Provider>
-        </SlideMenuContext.Provider>
+        </PopupsContext.Provider>
       </CurrentUserContext.Provider>
     </div>
   );

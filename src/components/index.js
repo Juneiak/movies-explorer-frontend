@@ -19,6 +19,7 @@ import QuestionLink from './question-link/question-link';
 import SimpleWindowTitle from './simple-window-title/simple-window-title';
 import PortfolioLink from './portfolio-link/portfolio-link';
 import SlideMenu from './slide-menu/slide-menu';
+import NotLoggedInPopup from './not-loggedin-popup/not-loggedin-popup';
 
 export {
   Header,
@@ -42,4 +43,5 @@ export {
   SimpleWindowTitle,
   PortfolioLink,
   SlideMenu,
+  NotLoggedInPopup,
 };

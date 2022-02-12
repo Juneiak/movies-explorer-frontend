@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './slide-menu.css';
 import Account from '../account/account';
 import SlideMenuLink from './slide-menu-link';
-import SlideMenuContext from '../../contexts/slide-menu-context';
+import PopupsContext from '../../contexts/popups-context';
 
-const slideMenuRoot = document.querySelector('#react-slide-menu');
+const popupsRoot = document.querySelector('#popupsRoot');
 
 const SlideMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const setIsSlideMenuOpen = React.useContext(SlideMenuContext);
+  const {setIsSlideMenuOpen} = React.useContext(PopupsContext);
 
   React.useEffect(() => {
     setIsOpen(true);
@@ -38,7 +38,7 @@ const SlideMenu = () => {
         </div>
       </div>
     </section>
-  ), slideMenuRoot);
+  ), popupsRoot);
 };
 
 export default SlideMenu;
