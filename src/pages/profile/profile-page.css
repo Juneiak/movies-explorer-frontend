@@ -79,9 +79,6 @@
   padding: 0;
   text-align: end;
 }
-.profile-page__value:disabled {
-  background-color: #FF4062;
-}
 
 .profile-page__buttons {
   display: flex;
@@ -120,9 +117,6 @@
   margin: 0 0 16px;
 } 
 
-.profile-page__button_edit:disabled {
-  color:#FF4062;
-}
 
 .profile-page__button_signout {
   color:#FF4062;

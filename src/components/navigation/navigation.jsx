@@ -8,7 +8,7 @@ const Navigation = () => {
       <ul className='navigation__links-list'>
         <li className='navigation__list-element'>
           <NavLink
-            to='/movies'
+            to='/'
             className='app__link app__link-animation navigation__link'
             activeClassName='app__link_active'
           >

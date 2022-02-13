@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import {
-  MainPage,
   MoviesPage,
   LoginPage,
   RegisterPage,
@@ -88,7 +87,7 @@ function App() {
         return moviesList;
       })
       .catch((err) => {
-        console.error(`get movies error in app - ${err}`);
+        console.error(err);
         return Promise.reject(err);
       })
     };
@@ -114,7 +113,7 @@ function App() {
         return currentUserData;
       })
       .catch((err) => {
-        console.error(`get current user data error in app - ${err}`);
+        console.error(err);
         setIsAuthLoaded(true);
         setLoadedUser({});
         return Promise.reject(err);
@@ -127,12 +126,12 @@ function App() {
         console.log(res.message);
         getUserDataHandler()
           .then(() => {
-            history.push('/movies')
+            history.push('/')
             return Promise.resolve('loggedIn')
           })
       })
       .catch((err) => {
-        console.error(`signIn error in app - ${err}`);
+        console.error(err);
         return Promise.reject('Во время авторизации произошла ошибка. Подождите немного и попробуйте ещё раз')
       })
   );
@@ -147,7 +146,7 @@ function App() {
         })
       })
       .catch((err) => {
-        console.error(`signUp error in app - ${err}`);
+        console.error(err);
         return Promise.reject('Во время регистрации произошла ошибка. Подождите немного и попробуйте ещё раз')
 
       })
@@ -167,7 +166,7 @@ function App() {
     })
     .catch((err) => {
       setIsAuthLoaded(true);
-      console.error(`signOut error in app - ${err}`);
+      console.error(err);
       return Promise.reject('Не удалось выйти из аккаунта. Подождите немного и попробуйте ещё раз')
     }) 
   };
@@ -180,7 +179,7 @@ function App() {
         return Promise.resolve(updatedCurrentUserData);
       })
       .catch((err) => {
-        console.error(`current user data update error in app - ${err}`);
+        console.error(err);
         return Promise.reject('Не удалось обновить данные аккаунта. Подождите немного и попробуйте ещё раз');
       })
   );
@@ -191,6 +190,7 @@ function App() {
         getAllMoviesHandler();
         getUserMoviesHandler();
       })
+      .catch(err => console.error(err))
   }, []);
 
   return (
@@ -220,11 +220,11 @@ function App() {
               />
 
               <Route exact path='/signin'>
-                {currentUser.email ? <Redirect to='/' /> : <LoginPage onSigninButtonClick={signinHandler}/> }
+                {currentUser?.email ? <Redirect to='/' /> : <LoginPage onSigninButtonClick={signinHandler}/> }
               </Route>
 
               <Route exact path='/signup'>
-                {currentUser.email ? <Redirect to='/' /> : <RegisterPage  onSignupButtonClick={signupHandler} />}
+                {currentUser?.email ? <Redirect to='/' /> : <RegisterPage  onSignupButtonClick={signupHandler} />}
               </Route>
 
               <Route path='*'>

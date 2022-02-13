@@ -10,6 +10,8 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const { isValid, values, errors, resetForm, handleChange } = useFormWithValidation();
 
+  const isValidForUpdate = isValid && (currentUser.email !== values.profileEmail || currentUser.name !== values.profileName)
+  
   const resetProfileForm = () => resetForm({
     profileName: currentUser.name,
     profileEmail: currentUser.email,
@@ -20,7 +22,7 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
   }, [currentUser]);
 
   const handleUpdateUserData = () => {
-    if (currentUser.email !== values.profileEmail || currentUser.name !== values.profileName) {
+    if (isValidForUpdate) {
       setIsLoading(true);
       onUpdateButtonClick(values.profileName, values.profileEmail)
       .then(() => setIsLoading(false))
@@ -79,13 +81,13 @@ const ProfilePage = ({ onSignoutButtonClick, onUpdateButtonClick }) => {
               <button
                 type='button'
                 onClick={handleUpdateUserData}
-                disabled={!isValid || isLoading}
+                disabled={!isValidForUpdate || isLoading}
                 className={`
                   app__link
                   app__link-animation
                   profile-page__button
                   profile-page__button_edit
-                  ${!isValid && 'profile-page__button_inactive'}
+                  ${!isValidForUpdate && 'profile-page__button_inactive'}
                 `}
               >Редактировать</button>
               <button

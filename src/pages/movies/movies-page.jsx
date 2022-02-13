@@ -64,8 +64,8 @@ const MoviesPage = ({ getAllMoviesHandler }) => {
             ? <h2 className='movies-page__nothing-found'>Ничего не найдено</h2>
             : 
             <MoviesCardList onMoreButtonClick={moreHandler}  buttonStatus={isMoreButtonActive}>
-              {filteredMovies.slice(0, numberOfElements).map((item) => (
-                <MoviesCard cardData={item} key={item.movieId} />
+              {filteredMovies.slice(0, numberOfElements).map((item, index) => (
+                <MoviesCard cardData={item} key={index} />
               ))}
             </MoviesCardList>
             )

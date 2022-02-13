@@ -45,6 +45,7 @@ const RegisterPage = ({ onSignupButtonClick }) => {
               maxLength={30}
               minLength={2}
               isInputActive={!isLoading}
+              inputPlaceholder='валидация: русские буквы, первая заглавная'
             />
             <InputContainer
               inputTitle='E-mail'
@@ -55,6 +56,7 @@ const RegisterPage = ({ onSignupButtonClick }) => {
               inputName='signupEmail'
               inputErrors={errors.signupEmail}
               isInputActive={!isLoading}
+              inputPlaceholder='Ваша почта'
             />
             <InputContainer
               inputTitle='Пароль'

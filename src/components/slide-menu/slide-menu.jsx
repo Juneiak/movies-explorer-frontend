@@ -29,8 +29,7 @@ const SlideMenu = () => {
         <div className='slide-menu__content'>
           <nav className='slide-menu__navigation'>
             <ul className='slide-menu__nav-list'>
-              <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Главная' linkTo='/' />
-              <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Фильмы' linkTo='/movies' />
+              <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Фильмы' linkTo='/' />
               <SlideMenuLink onLinkClick={closeSlideMenu} linkName='Сохранённые фильмы' linkTo='/saved-movies' />
             </ul>
           </nav>

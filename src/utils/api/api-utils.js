@@ -3,7 +3,7 @@ const moviesApiUrl = 'https://api.nomoreparties.co/beatfilm-movies';
 
 const checkStatus = (res) => {
   if (res.ok) return res.json()
-  else return Promise.reject(`FetchError: ${res.status} - ${res.message}`);
+  return Promise.reject(`FetchError: ${res.status} - ${res.message}`);
 }
 
 
