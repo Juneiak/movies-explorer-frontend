@@ -113,7 +113,6 @@ function App() {
         return currentUserData;
       })
       .catch((err) => {
-        console.error(err);
         setIsAuthLoaded(true);
         setLoadedUser({});
         return Promise.reject(err);
