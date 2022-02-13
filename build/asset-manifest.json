@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3cd4b01d.chunk.css",
+    "main.js": "/static/js/main.13c8e4f0.chunk.js",
+    "main.js.map": "/static/js/main.13c8e4f0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e21d87c7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e21d87c7.js.map",
+    "static/js/2.73f584f8.chunk.js": "/static/js/2.73f584f8.chunk.js",
+    "static/js/2.73f584f8.chunk.js.map": "/static/js/2.73f584f8.chunk.js.map",
+    "static/js/3.80ba7683.chunk.js": "/static/js/3.80ba7683.chunk.js",
+    "static/js/3.80ba7683.chunk.js.map": "/static/js/3.80ba7683.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.3cd4b01d.chunk.css.map": "/static/css/main.3cd4b01d.chunk.css.map",
+    "static/js/2.73f584f8.chunk.js.LICENSE.txt": "/static/js/2.73f584f8.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Inter-ThinItalic.bae95eb2.woff",
+    "static/media/header.css": "/static/media/logo.fe4adf65.svg",
+    "static/media/not-loggedin-popup.css": "/static/media/close-icon.08bd6f39.svg",
+    "static/media/movies-card.css": "/static/media/mini-close-icon.06d6cb48.svg",
+    "static/media/account.css": "/static/media/profile-icon.4c56f5b0.svg",
+    "static/media/search-icon.658eea3a.svg": "/static/media/search-icon.658eea3a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e21d87c7.js",
+    "static/js/2.73f584f8.chunk.js",
+    "static/css/main.3cd4b01d.chunk.css",
+    "static/js/main.13c8e4f0.chunk.js"
+  ]
+}
